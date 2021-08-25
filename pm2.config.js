@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'kovajs',
-      script: 'dist/main.js',
+      script: 'dist/src/main.js',
       exec_mode: 'cluster',
       max_memory_restart: '800M',
       instances: 0,
