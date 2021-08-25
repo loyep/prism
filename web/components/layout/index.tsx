@@ -22,7 +22,7 @@ const Layout: FC<LayoutProps> = (props: LayoutProps) => {
         {/*/>*/}
         {injectCss}
       </head>
-      <body>
+      <body className="bg-white dark:bg-black text-white dark:text-black">
         <div id="app">
           <App children={props.children} />
         </div>
