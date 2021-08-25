@@ -23,7 +23,7 @@ const config = {
           },
         },
         postcss: {
-          // plugins: [require('tailwindcss'), require('autoprefixer')],
+          plugins: [require('tailwindcss'), require('autoprefixer')],
         },
       },
     }
