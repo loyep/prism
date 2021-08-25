@@ -4,6 +4,6 @@ import { indexModule } from './modules/index-page/index.module'
 import { PrismaModule } from './prisma'
 
 @Module({
-  imports: [DetailModule, indexModule, PrismaModule]
+  imports: [DetailModule, indexModule, PrismaModule],
 })
 export class AppModule {}

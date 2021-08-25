@@ -7,18 +7,18 @@ import { ApiDetailService } from './detail.service'
 
 @Controller('/')
 export class DetailController {
-  constructor (private readonly apiDeatilservice: ApiDetailService) {}
+  constructor(private readonly apiDeatilservice: ApiDetailService) {}
 
   @Get('/detail/:id')
-  async handlerDetail (@Req() req: Request, @Res() res: Response): Promise<any> {
+  async handlerDetail(@Req() req: Request, @Res() res: Response): Promise<any> {
     try {
       const ctx = {
         request: req,
         response: res,
-        apiDeatilservice: this.apiDeatilservice
+        apiDeatilservice: this.apiDeatilservice,
       }
       const stream = await render<Readable>(ctx, {
-        stream: true
+        stream: true,
       })
       stream.pipe(res, { end: false })
       stream.on('end', () => {

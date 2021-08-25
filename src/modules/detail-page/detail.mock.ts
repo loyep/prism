@@ -7,10 +7,10 @@ export default {
             {
               data: {
                 img: 'http://r1.ykimg.com/053500005E4A3D5E8B74390A990B72DA',
-                title: '会员版：沈腾土味英语笑哭外国人，华晨宇惨被喷成“雪花”'
-              }
-            }
-          ]
+                title: '会员版：沈腾土味英语笑哭外国人，华晨宇惨被喷成“雪花”',
+              },
+            },
+          ],
         },
         {
           dataNode: [
@@ -24,35 +24,35 @@ export default {
                   type: 'SIMPLE',
                   mediaMarkType: 'VIP',
                   mediaMarkEnum: {
-                    name: 'SHOW'
+                    name: 'SHOW',
                   },
                   data: {
                     text: 'VIP',
                     color: 'GOLDEN',
                     colorValue: null,
-                    img: null
-                  }
+                    img: null,
+                  },
                 },
                 showImg: false,
                 subTitleList: [
                   {
                     subtitle: '热度 8701',
-                    subtitleType: 'PLAY_VV'
+                    subtitleType: 'PLAY_VV',
                   },
                   {
                     subtitle: '真人秀',
-                    subtitleType: 'GENRE'
+                    subtitleType: 'GENRE',
                   },
                   {
                     subtitle: '更新至05-03期',
-                    subtitleType: 'EPISODE_TOTAL'
-                  }
-                ]
+                    subtitleType: 'EPISODE_TOTAL',
+                  },
+                ],
               },
               id: 445804,
-              type: 10010
-            }
-          ]
+              type: 10010,
+            },
+          ],
         },
         {
           id: 51680,
@@ -69,9 +69,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '终结者',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '终结者州长回归护人类'
-
-              }
+                subtitle: '终结者州长回归护人类',
+              },
             },
             {
               data: {
@@ -82,8 +81,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '海王',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '温子仁开启“海鲜盛宴”'
-              }
+                subtitle: '温子仁开启“海鲜盛宴”',
+              },
             },
             {
               data: {
@@ -94,8 +93,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '神奇女侠',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '豪放神奇女侠艳光四射'
-              }
+                subtitle: '豪放神奇女侠艳光四射',
+              },
             },
             {
               data: {
@@ -106,8 +105,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '明日边缘',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '阿汤哥孤岛陷死循环'
-              }
+                subtitle: '阿汤哥孤岛陷死循环',
+              },
             },
             {
               data: {
@@ -118,8 +117,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '正义联盟',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '孤胆英雄救世正义无敌'
-              }
+                subtitle: '孤胆英雄救世正义无敌',
+              },
             },
             {
               data: {
@@ -130,8 +129,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '黑暗塔',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '斯蒂芬金奇幻史诗改编'
-              }
+                subtitle: '斯蒂芬金奇幻史诗改编',
+              },
             },
             {
               data: {
@@ -142,8 +141,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '黑豹',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '漫威首位黑人超级英雄'
-              }
+                subtitle: '漫威首位黑人超级英雄',
+              },
             },
             {
               data: {
@@ -154,8 +153,8 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '超凡蜘蛛侠2',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '反派大联盟挑战蜘蛛侠'
-              }
+                subtitle: '反派大联盟挑战蜘蛛侠',
+              },
             },
             {
               data: {
@@ -166,13 +165,13 @@ export default {
                 summaryType: 'YOUKU_SCORE',
                 title: '美国狙击手',
                 subtitleType: 'TEN_WORDS',
-                subtitle: '致命神射手生死传奇'
-              }
-            }
+                subtitle: '致命神射手生死传奇',
+              },
+            },
           ],
-          title: '猜你喜欢'
-        }
-      ]
-    }
-  }
+          title: '猜你喜欢',
+        },
+      ],
+    },
+  },
 }

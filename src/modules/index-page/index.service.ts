@@ -3,7 +3,7 @@ import mock from './index.mock'
 
 @Injectable()
 export class ApiService {
-  async index (): Promise<any> {
+  async index(): Promise<any> {
     return await Promise.resolve(mock)
   }
 }

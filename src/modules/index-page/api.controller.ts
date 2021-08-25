@@ -4,15 +4,15 @@ import { ApiService } from './index.service'
 
 @Controller('/api')
 export class ApiController {
-  constructor (private readonly apiService: ApiService, private readonly prisma: PrismaService) {}
+  constructor(private readonly apiService: ApiService, private readonly prisma: PrismaService) {}
 
   @Get('/index')
-  async getIndexData (): Promise<any> {
+  async getIndexData(): Promise<any> {
     return await this.apiService.index()
   }
 
   @Get('/test')
-  async getTestData (): Promise<any> {
+  async getTestData(): Promise<any> {
     return await this.prisma.post.findMany()
   }
 }
