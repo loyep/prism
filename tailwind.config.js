@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors');
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: ['./web/**/*.{vue,js,ts,jsx,tsx}'],
@@ -21,4 +21,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-};
+}

@@ -3,5 +3,5 @@ const { reactPlugin } = require('ssr-plugin-react')
 
 module.exports = {
   serverPlugin: nestjsPlugin(),
-  clientPlugin: reactPlugin()
+  clientPlugin: reactPlugin(),
 }
