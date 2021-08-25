@@ -47,8 +47,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.3.0",
-    "ssr-core-react": "^5.0.0",
-    "swiper": "6.8.4"
+    "ssr-core-react": "^5.6.12",
+    "swiper": "7.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -85,10 +85,10 @@
     "prisma": "2.30.0",
     "prisma-dbml-generator": "^0.7.0",
     "rimraf": "^3.0.2",
-    "ssr": "^5.0.0",
-    "ssr-plugin-nestjs": "^5.0.0",
-    "ssr-plugin-react": "^5.0.0",
-    "ssr-types-react": "^5.0.0",
+    "ssr": "^5.6.12",
+    "ssr-plugin-nestjs": "^5.6.12",
+    "ssr-plugin-react": "^5.6.12",
+    "ssr-types-react": "^5.6.12",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
