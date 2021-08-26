@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "prebuild": "yarn prisma:generate",
     "build": "ssr build",
     "deploy": "ssr build && ssr deploy",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
