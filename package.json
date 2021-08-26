@@ -7,8 +7,9 @@
     "deploy": "ssr build && ssr deploy",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
     "lint:fix": "eslint . --ext .js,.tsx,.ts --cache --fix",
-    "prod": "ssr build && pm2 start pm2.config.js",
-    "start": "ssr start",
+    "start": "ssr build && pm2 start pm2.config.js",
+    "prisma:generate": "npx prisma generate",
+    "dev": "ssr start",
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
     "stop": "pm2 stop pm2.config.js"
@@ -45,7 +46,6 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
     "rxjs": "^7.3.0",
     "swiper": "^7.0.0"
   },

@@ -13,6 +13,18 @@ export class ApiController {
 
   @Get('/test')
   async getTestData(): Promise<any> {
-    return await this.prisma.post.findMany()
+    return this.prisma.user.findMany({
+      select: {
+        name: true,
+        email: true,
+        id: true,
+        articles: {
+          select: {
+            title: true,
+            id: true,
+          },
+        },
+      },
+    })
   }
 }

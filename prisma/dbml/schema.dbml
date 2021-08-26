@@ -2,20 +2,186 @@
 //// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 //// ------------------------------------------------------
 
-Table User {
-  id Int [pk, increment]
-  email String [unique, not null]
-  name String
-  posts Post [not null]
-}
-
-Table Post {
+Table Article {
   id Int [pk, increment]
   title String [not null]
-  content String
-  published Boolean [default: false]
+  public Boolean [not null, default: false]
+  slug String [unique, not null]
+  image String [not null]
+  excerpt String [not null]
+  meta Json
+  cover String [not null]
+  browseCount Int [not null]
+  commentsCount Int [not null]
+  likesCount Int [not null]
+  comments Comment [not null, note: '评论']
+  content Content [note: '文章']
+  userId Int [not null, note: '关联用户']
   user User
-  userId Int
+  categoryId Int [not null, note: '分类']
+  category Category
+  tags TagsOnArticles [not null]
+  favoritings Favorite [not null]
+  likes Like [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
 }
 
-Ref: Post.userId > User.id
+Table User {
+  id Int [pk, increment]
+  email String [unique]
+  name String [not null]
+  slug String [unique, not null]
+  url String [note: '链接']
+  meta Json
+  cover String
+  bio String
+  description String
+  mobile String
+  openid String
+  password String [not null]
+  loggedAt DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  deleteAt DateTime
+  articles Article [not null]
+  comments Comment [not null]
+  favorites Favorite [not null]
+  likes Like [not null]
+}
+
+Table Tag {
+  id Int [pk, increment]
+  slug String [unique, not null]
+  articles TagsOnArticles [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Category {
+  id Int [pk, increment]
+  articles Article [not null]
+  slug String [unique, not null]
+  name String [not null]
+  description String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Topic {
+  id Int [pk, increment]
+}
+
+Table Setting {
+  id Int [pk, increment]
+}
+
+Table Comment {
+  id Int [pk, increment]
+  articleId Int [not null]
+  article Article
+  userId Int [not null]
+  user User
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Favorite {
+  id Int [pk, increment]
+  userId Int [not null]
+  articleId Int [not null]
+  user User
+  article Article
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Content {
+  id Int [pk, increment]
+  articleId Int [not null]
+  article Article
+  html String
+  markdown String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Collection {
+  id Int [pk, increment]
+}
+
+Table Like {
+  id Int [pk, increment]
+  userId Int [not null]
+  articleId Int [not null]
+  user User
+  article Article
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Media {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Menu {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Role {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Permission {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table TagsOnArticles {
+  article Article [not null]
+  articleId Int [not null]
+  tag Tag [not null]
+  tagId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (articleId, tagId) [pk]
+  }
+}
+
+Enum ArticleStatus {
+  PUBLISHED
+  PRIVATE
+  PASSWORD
+  DRAFT
+}
+
+Ref: Article.userId > User.id
+
+Ref: Article.categoryId > Category.id
+
+Ref: Comment.articleId > Article.id
+
+Ref: Comment.userId > User.id
+
+Ref: Favorite.userId > User.id
+
+Ref: Favorite.articleId > Article.id
+
+Ref: Content.articleId - Article.id
+
+Ref: Like.userId > User.id
+
+Ref: Like.articleId > Article.id
+
+Ref: TagsOnArticles.articleId > Article.id
+
+Ref: TagsOnArticles.tagId > Tag.id
