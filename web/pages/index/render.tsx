@@ -75,6 +75,42 @@ const Index: FC<IndexProps> = (props) => {
           <p className="text-gray-500">You have a new message!</p>
         </div>
       </div>
+
+      <div className="container flex items-center justify-center mt-20 py-10">
+        <div className="w-full md:w-1/2 xl:w-1/3">
+          <div className="mx-5 md:mx-10">
+            <h2 className="uppercase">It’s Great To See You!</h2>
+            <h4 className="uppercase">Login Here</h4>
+          </div>
+          <form className="card mt-5 p-5 md:p-10" action="index.html">
+            <div className="mb-5">
+              <label className="label block mb-2">Email</label>
+              <input type="text" className="form-control" id="email" placeholder="example@example.com" />
+            </div>
+            <div className="mb-5">
+              <label className="label block mb-2">Password</label>
+              <label className="form-control-addon-within">
+                <input type="password" className="form-control border-none" id="password" value="12345" />
+                <span className="flex items-center pr-4">
+                  <button
+                    type="button"
+                    className="btn btn-link text-gray-600 dark:text-gray-600 la la-eye text-xl leading-none"
+                    data-toggle="password-visibility"
+                  />
+                </span>
+              </label>
+            </div>
+            <div className="flex items-center">
+              <a href="auth-forgot-password.html" className="text-sm uppercase">
+                Forgot Password?
+              </a>
+              <button type="submit" className="btn btn_primary ml-auto uppercase">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
