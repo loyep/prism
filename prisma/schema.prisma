@@ -51,8 +51,6 @@ model Article {
   likes       Like[]
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
-
-  @@map("articles")
 }
 
 model User {
@@ -77,8 +75,6 @@ model User {
   comments    Comment[]
   favorites   Favorite[]
   likes       Like[]
-
-  @@map("users")
 }
 
 model Tag {
@@ -87,8 +83,6 @@ model Tag {
   articles  TagsOnArticles[]
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
-
-  @@map("tags")
 }
 
 model Category {
@@ -99,20 +93,14 @@ model Category {
   description String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-
-  @@map("categories")
 }
 
 model Topic {
   id Int @id @default(autoincrement())
-
-  @@map("topics")
 }
 
 model Setting {
   id Int @id @default(autoincrement())
-
-  @@map("settings")
 }
 
 model Comment {
@@ -124,8 +112,6 @@ model Comment {
   user      User?    @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("comments")
 }
 
 model Favorite {
@@ -137,8 +123,6 @@ model Favorite {
   article   Article? @relation(fields: [articleId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("favorites")
 }
 
 model Content {
@@ -149,15 +133,10 @@ model Content {
   markdown  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("contents")
 }
 
 model Collection {
-
   id Int @id @default(autoincrement())
-
-  @@map("collections")
 }
 
 model Like {
@@ -168,43 +147,30 @@ model Like {
   article   Article? @relation(fields: [articleId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("likes")
 }
 
 model Media {
-
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("medias")
 }
 
 model Menu {
-
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("menus")
 }
 
 model Role {
-
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("roles")
 }
 
 model Permission {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("permissions")
 }
 
 model TagsOnArticles {
@@ -217,5 +183,4 @@ model TagsOnArticles {
   updatedAt DateTime @updatedAt
 
   @@id([articleId, tagId])
-  @@map("tags_on_articles")
 }
