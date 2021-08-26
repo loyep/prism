@@ -14,6 +14,8 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
     })
   }
 
+  // const getLayout = (props.children as any).type.getLayout || ((page: React.Component) => page)
+
   useEffect(() => {
     if (__isBrowser__) {
       const d = document.documentElement

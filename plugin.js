@@ -1,5 +1,4 @@
-const { nestjsPlugin } = require('ssr-plugin-nestjs')
-const { reactPlugin } = require('ssr-plugin-react')
+const { reactPlugin, nestjsPlugin } = require('@kova/ssr')
 
 module.exports = {
   serverPlugin: nestjsPlugin(),
