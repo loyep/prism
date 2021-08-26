@@ -25,6 +25,10 @@ export class ApiController {
           },
         },
       },
+      take: 20,
+      orderBy: {
+        id: 'desc'
+      }
     })
   }
 }

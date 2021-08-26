@@ -27,14 +27,14 @@ model Article {
   title   String
   public  Boolean @default(false)
   slug    String  @unique
-  image   String
-  excerpt String
+  image   String?
+  excerpt String?
   meta    Json?
-  cover   String
+  cover   String?
 
-  browseCount   Int @db.UnsignedInt
-  commentsCount Int @db.UnsignedInt
-  likesCount    Int @db.UnsignedInt
+  browseCount   Int @db.UnsignedInt @default(0)
+  commentsCount Int @db.UnsignedInt @default(0)
+  likesCount    Int @db.UnsignedInt @default(0)
 
   /// 评论
   comments    Comment[]
@@ -90,7 +90,7 @@ model Category {
   articles    Article[]
   slug        String    @unique
   name        String
-  description String
+  description String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }

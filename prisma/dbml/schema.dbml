@@ -7,13 +7,13 @@ Table Article {
   title String [not null]
   public Boolean [not null, default: false]
   slug String [unique, not null]
-  image String [not null]
-  excerpt String [not null]
+  image String
+  excerpt String
   meta Json
-  cover String [not null]
-  browseCount Int [not null]
-  commentsCount Int [not null]
-  likesCount Int [not null]
+  cover String
+  browseCount Int [not null, default: 0]
+  commentsCount Int [not null, default: 0]
+  likesCount Int [not null, default: 0]
   comments Comment [not null, note: '评论']
   content Content [note: '文章']
   userId Int [not null, note: '关联用户']

@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `Article` MODIFY `image` VARCHAR(191),
+    MODIFY `excerpt` VARCHAR(191),
+    MODIFY `cover` VARCHAR(191),
+    MODIFY `browseCount` INTEGER UNSIGNED NOT NULL DEFAULT 0,
+    MODIFY `commentsCount` INTEGER UNSIGNED NOT NULL DEFAULT 0;
