@@ -2,6 +2,7 @@ import '@/global.css'
 import { LayoutProps } from 'ssr-types-react'
 import React, { FC, useContext, useEffect } from 'react'
 import Container from '@/components/Container'
+import { Button } from 'antd'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state, dispatch } = useContext(window.STORE_CONTEXT)
@@ -32,9 +33,9 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   return (
     <Container>
-      <button className="bg-gray-300 text-white dark:text-white dark:bg-black rounded w-28" onClick={toggleTheme}>
+      <Button className="bg-gray-300 text-white dark:text-white dark:bg-black rounded w-28" onClick={toggleTheme}>
         Theme
-      </button>
+      </Button>
       {props.children}
     </Container>
   )
