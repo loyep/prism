@@ -24,9 +24,7 @@ export class TagApiController {
 
   @Get('/tags/:slug/articles')
   async getArticleByTagSlug(@Param('slug') slug: string) {
-    const tag = await this.service.getTag({
-      slug,
-    })
-    return _.omit<Tag>(tag)
+    const articles = await this.service.getArticlesByTag(slug)
+    return articles
   }
 }

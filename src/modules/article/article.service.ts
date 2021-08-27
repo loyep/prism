@@ -80,4 +80,24 @@ export class ArticleService {
       },
     })
   }
+
+  async getTagsByArticle(slug: string): Promise<any[]> {
+    const articleId = await this.getArticleIdBySlug(slug)
+
+    if (!articleId) return []
+
+    return this.prisma.tag.findMany({
+      where: {
+        articles: {
+          some: {
+            articleId,
+          },
+        },
+      },
+      select: {
+        id: true,
+        slug: true,
+      },
+    })
+  }
 }

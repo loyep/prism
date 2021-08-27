@@ -41,6 +41,8 @@ export class UserService {
             userId,
           },
         },
+        status: 'PUBLISHED',
+        public: true,
       },
     })
   }

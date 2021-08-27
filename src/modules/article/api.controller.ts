@@ -26,4 +26,9 @@ export class ArticleApiController {
   async getFavoritesBySlug(@Param('slug') slug: string) {
     return await this.service.getFavoritesByArticle(slug)
   }
+
+  @Get('/articles/:slug/tags')
+  async getTagsBySlug(@Param('slug') slug: string) {
+    return await this.service.getTagsByArticle(slug)
+  }
 }
