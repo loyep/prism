@@ -9,4 +9,4 @@ import { PrismaModule } from 'src/prisma'
   controllers: [AppController, ApiController],
   providers: [ApiService],
 })
-export class indexModule {}
+export class IndexModule {}

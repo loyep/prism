@@ -1,26 +1,18 @@
-import { join } from 'path'
 import { NestFactory } from '@nestjs/core'
-import { NestExpressApplication } from '@nestjs/platform-express'
-import { initialSSRDevProxy, loadConfig, getCwd } from 'ssr-server-utils'
-import { PrismaService } from './prisma'
-
+import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express'
 import { AppModule } from './app.module'
+import { bootstrap } from './bootstrap'
 
-async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule)
-  await initialSSRDevProxy(app, {
-    express: true,
-  })
-  app.useStaticAssets(join(getCwd(), './build'))
-
-  const { serverPort } = loadConfig()
-  await app.listen(serverPort)
-
-  const prismaService: PrismaService = app.get(PrismaService)
-  prismaService.enableShutdownHooks(app)
+async function main(): Promise<void> {
+  const express = new ExpressAdapter()
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, express)
+  await bootstrap(app, true)
 }
 
-bootstrap().catch((err) => {
-  console.log(err)
-  process.exit(1)
-})
+main()
+  .catch(() => {
+    process.exit(1)
+  })
+  .then(() => {
+    // fs.writeFile(filename,data,[options],callback)
+  })

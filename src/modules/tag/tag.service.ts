@@ -1,15 +1,19 @@
 import { Injectable } from '@nestjs/common'
 import { Tag, Article, Prisma } from '@prisma/client'
 import { PrismaService } from '~/prisma'
+import { Tag as TagModel } from '~/models/tag'
+import { Article as ArticleModel } from '~/models/article'
+import { plainToClass } from 'class-transformer'
 
 @Injectable()
 export class TagService {
   constructor(private prisma: PrismaService) {}
 
   async getTag(TagWhereUniqueInput: Prisma.TagWhereUniqueInput): Promise<Tag | null> {
-    return this.prisma.tag.findUnique({
+    const data = await this.prisma.tag.findUnique({
       where: TagWhereUniqueInput,
     })
+    return plainToClass(TagModel, data)
   }
 
   async getArticleIdBySlug(slug: string): Promise<number | null> {
@@ -20,7 +24,7 @@ export class TagService {
   async getArticlesByTag(slug: string): Promise<Article[]> {
     const tagId = await this.getArticleIdBySlug(slug)
     if (!tagId) return []
-    return this.prisma.article.findMany({
+    const data = await this.prisma.article.findMany({
       where: {
         tags: {
           some: {
@@ -29,6 +33,7 @@ export class TagService {
         },
       },
     })
+    return plainToClass(ArticleModel, data)
   }
 
   async tags(
@@ -41,13 +46,14 @@ export class TagService {
     } = {},
   ): Promise<Tag[]> {
     const { skip, take, cursor, where, orderBy } = params
-    return this.prisma.tag.findMany({
+    const data = await this.prisma.tag.findMany({
       skip,
       take,
       cursor,
       where,
       orderBy,
     })
+    return plainToClass(TagModel, data)
   }
 
   async createTag(data: Prisma.TagCreateInput): Promise<Tag> {

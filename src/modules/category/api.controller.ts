@@ -1,8 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common'
 import { CategoryService } from './category.service'
-import _ from 'lodash'
-import { Category } from '@prisma/client'
-// import { hashSync } from 'bcrypt'
 
 @Controller('/api')
 export class CategoryApiController {
@@ -19,6 +16,6 @@ export class CategoryApiController {
     const category = await this.service.getCategory({
       slug,
     })
-    return _.omit<Category>(category)
+    return category
   }
 }

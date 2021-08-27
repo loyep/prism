@@ -9,12 +9,8 @@ import { CategoryService } from './category.service'
 
 @Module({
   imports: [],
-  providers: [
-    CategoryService,
-  ],
+  providers: [CategoryService],
   controllers: [CategoryController, CategoryApiController],
-  exports: [
-    CategoryService,
-  ],
+  exports: [CategoryService],
 })
 export class CategoryModule {}
