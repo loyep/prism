@@ -67,6 +67,8 @@ model User {
   articles    Article[]
   comments    Comment[]
   favorites   Favorite[]
+  followings  Follower[] @relation(name: "following")
+  followers   Follower[] @relation(name: "follower")
   likes       Like[]
 
   @@map("users")
@@ -217,4 +219,18 @@ model TagsOnArticles {
   @@id([articleId, tagId])
   @@index([tagId], name: "tagId")
   @@map("tags_on_articles")
+}
+
+model Follower {
+  followerId  Int      @map("follower_id")
+  followingId Int      @map("following_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+  follower    User     @relation(name: "follower", fields: [followerId], references: [id])
+  following   User     @relation(name: "following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
+  @@index([followerId], name: "followerId")
+  @@index([followingId], name: "followingId")
+  @@map("followers")
 }

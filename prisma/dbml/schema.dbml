@@ -48,6 +48,8 @@ Table User {
   articles Article [not null]
   comments Comment [not null]
   favorites Favorite [not null]
+  followings Follower [not null]
+  followers Follower [not null]
   likes Like [not null]
 }
 
@@ -159,6 +161,19 @@ Table TagsOnArticles {
   }
 }
 
+Table Follower {
+  followerId Int [not null]
+  followingId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  follower User [not null]
+  following User [not null]
+
+  indexes {
+    (followerId, followingId) [pk]
+  }
+}
+
 Enum ArticleStatus {
   PUBLISHED
   PRIVATE
@@ -187,3 +202,7 @@ Ref: Like.userId > User.id
 Ref: TagsOnArticles.articleId > Article.id
 
 Ref: TagsOnArticles.tagId > Tag.id
+
+Ref: Follower.followerId > User.id
+
+Ref: Follower.followingId > User.id
