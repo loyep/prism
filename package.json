@@ -48,14 +48,14 @@
     "react-router-dom": "^5.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
-    "swiper": "^7.0.0"
+    "swiper": "^7.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@kova/ssr": "^0.0.2",
+    "@kova/ssr": "^0.0.3",
     "@nestjs/cli": "^8.1.1",
     "@nestjs/schematics": "^8.0.3",
     "@nestjs/testing": "^8.0.6",
