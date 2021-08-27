@@ -30,7 +30,7 @@ const Index: FC<IndexProps> = (props) => {
         </div>
 
         <div
-          className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"
+          className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden pt-6 lg:pt-0"
           id="nav-content"
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">

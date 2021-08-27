@@ -33,10 +33,10 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   return (
     <Container>
+      {props.children}
       <Button className="bg-gray-300 text-white dark:text-white dark:bg-black rounded w-28" onClick={toggleTheme}>
         Theme
       </Button>
-      {props.children}
     </Container>
   )
 }
