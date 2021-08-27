@@ -1,11 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native"]
@@ -15,42 +7,43 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
-enum ArticleStatus {
-  PUBLISHED
-  PRIVATE
-  PASSWORD
-  DRAFT
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Article {
-  id      Int     @id @default(autoincrement())
-  title   String
-  public  Boolean @default(false)
-  slug    String  @unique
-  image   String?
-  excerpt String?
-  meta    Json?
-  cover   String?
-
-  browseCount   Int @db.UnsignedInt @default(0)
-  commentsCount Int @db.UnsignedInt @default(0)
-  likesCount    Int @db.UnsignedInt @default(0)
-
-  /// 评论
-  comments    Comment[]
-  /// 文章
-  content     Content?
+  id            Int              @id @default(autoincrement())
+  title         String
+  public        Boolean          @default(false)
+  slug          String           @unique
+  image         String?
+  excerpt       String?
+  meta          Json?
+  cover         String?
+  status        ArticleStatus    @default(DRAFT)
+  browseCount   Int              @default(0) @map("browse_count") @db.UnsignedInt
+  commentsCount Int              @default(0) @map("comments_count") @db.UnsignedInt
+  likesCount    Int              @default(0) @map("likes_count") @db.UnsignedInt
   /// 关联用户
-  userId      Int
-  user        User?            @relation(fields: [userId], references: [id])
+  userId        Int              @map("user_id")
   /// 分类
-  categoryId  Int              @db.UnsignedInt
-  category    Category?        @relation(fields: [categoryId], references: [id])
-  tags        TagsOnArticles[]
-  favoritings Favorite[]
-  likes       Like[]
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  categoryId    Int              @map("category_id") @db.UnsignedInt
+  createdAt     DateTime         @default(now()) @map("created_at")
+  updatedAt     DateTime         @default(now()) @updatedAt @map("updated_at")
+  category      Category         @relation(fields: [categoryId], references: [id])
+  user          User             @relation(fields: [userId], references: [id])
+  /// 评论
+  comments      Comment[]
+  /// 文章
+  content       Content?
+  favoritings   Favorite[]
+  likes         Like[]
+  tags          TagsOnArticles[]
+
+  @@index([categoryId], name: "categoryId")
+  @@index([userId], name: "userId")
+  @@map("articles")
 }
 
 model User {
@@ -67,120 +60,161 @@ model User {
   mobile      String?
   openid      String?
   password    String
-  loggedAt    DateTime
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  deleteAt    DateTime?
+  loggedAt    DateTime   @default(now()) @map("logged_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @default(now()) @updatedAt @map("updated_at")
+  deleteAt    DateTime?  @map("delete_at")
   articles    Article[]
   comments    Comment[]
   favorites   Favorite[]
   likes       Like[]
+
+  @@map("users")
+}
+
+enum ArticleStatus {
+  PUBLISHED
+  PRIVATE
+  PASSWORD
+  DRAFT
 }
 
 model Tag {
   id        Int              @id @default(autoincrement())
   slug      String           @unique
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @default(now()) @updatedAt @map("updated_at")
   articles  TagsOnArticles[]
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
+
+  @@map("tags")
 }
 
 model Category {
-  id          Int       @id @default(autoincrement()) @db.UnsignedInt
-  articles    Article[]
-  slug        String    @unique
-  name        String
-  description String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
+  slug          String    @unique
+  name          String
+  description   String?
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+  articles      Article[]
+  article_count Int       @default(0)
+
+  @@map("categories")
 }
 
 model Topic {
   id Int @id @default(autoincrement())
+
+  @@map("topics")
 }
 
 model Setting {
   id Int @id @default(autoincrement())
+
+  @@map("settings")
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  articleId Int
-  article   Article? @relation(fields: [articleId], references: [id])
+  articleId Int      @map("article_id")
+  userId    Int      @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
-  userId    Int
-  user      User?    @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@index([articleId], name: "articleId")
+  @@index([userId], name: "userId")
+  @@map("comments")
 }
 
 model Favorite {
-  id Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  articleId Int      @map("article_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
-  userId    Int
-  articleId Int
-  user      User?    @relation(fields: [userId], references: [id])
-  article   Article? @relation(fields: [articleId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@index([articleId], name: "articleId")
+  @@index([userId], name: "userId")
+  @@map("favorites")
 }
 
 model Content {
   id        Int      @id @default(autoincrement())
-  articleId Int
-  article   Article? @relation(fields: [articleId], references: [id])
+  articleId Int      @unique @map("article_id")
   html      String?
   markdown  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+
+  @@map("contents")
 }
 
 model Collection {
   id Int @id @default(autoincrement())
+
+  @@map("collections")
 }
 
 model Like {
   id        Int      @id @default(autoincrement())
-  userId    Int
-  articleId Int
-  user      User?    @relation(fields: [userId], references: [id])
-  article   Article? @relation(fields: [articleId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  userId    Int      @map("user_id")
+  articleId Int      @map("article_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([articleId], name: "articleId")
+  @@index([userId], name: "userId")
+  @@map("likes")
 }
 
 model Media {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("medias")
 }
 
 model Menu {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("menus")
 }
 
 model Role {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("roles")
 }
 
 model Permission {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("permissions")
 }
 
 model TagsOnArticles {
-  article   Article @relation(fields: [articleId], references: [id])
-  articleId Int
-  tag       Tag     @relation(fields: [tagId], references: [id])
-  tagId     Int
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  articleId Int      @map("article_id")
+  tagId     Int      @map("tag_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  tag       Tag      @relation(fields: [tagId], references: [id])
 
   @@id([articleId, tagId])
+  @@index([tagId], name: "tagId")
+  @@map("tags_on_articles")
 }

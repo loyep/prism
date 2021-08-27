@@ -71,9 +71,9 @@ async function createArticles() {
 async function main() {
   await createArticles()
 
-  setTimeout(() => {
-    main()
-  }, 2000)
+  // setTimeout(() => {
+  //   main()
+  // }, 2000)
 }
 
 main()

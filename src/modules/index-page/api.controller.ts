@@ -13,7 +13,10 @@ export class ApiController {
 
   @Get('/test')
   async getTestData(): Promise<any> {
-    return this.prisma.article.findMany({
+    console.time('getTestData')
+    const count = await this.prisma.article.count()
+    console.timeEnd('getTestData')
+    const data = await this.prisma.article.findMany({
       select: {
         title: true,
         image: true,
@@ -26,13 +29,18 @@ export class ApiController {
             id: true,
             name: true,
             slug: true,
-          }
-        }
+          },
+        },
       },
       take: 20,
       orderBy: {
-        id: 'desc'
-      }
+        id: 'desc',
+      },
     })
+
+    return {
+      data,
+      count,
+    }
   }
 }
