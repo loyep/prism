@@ -1,6 +1,6 @@
 import { Follower as PrismaFollower } from '@prisma/client'
 
-export class Follower implements PrismaFollower {
+export class FollowerModel implements PrismaFollower {
   followerId: number
   followingId: number
   createdAt: Date

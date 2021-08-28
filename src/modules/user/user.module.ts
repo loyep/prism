@@ -7,16 +7,12 @@ import { UserApiController } from './api.controller'
 // Services
 import { UserService } from './user.service'
 import { FollowService } from './follow.service'
+import { LikeModule } from '~/modules/like'
 
 @Module({
-  imports: [],
-  providers: [
-    UserService,
-    FollowService
-  ],
+  imports: [LikeModule],
+  providers: [UserService, FollowService],
   controllers: [UserController, UserApiController],
-  exports: [
-    UserService,
-  ],
+  exports: [],
 })
 export class UserModule {}

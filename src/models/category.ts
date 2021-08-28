@@ -2,7 +2,7 @@ import { Category as PrismaCategory } from '@prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
-export class Category implements PrismaCategory {
+export class CategoryModel implements PrismaCategory {
   id: number
   slug: string
   name: string

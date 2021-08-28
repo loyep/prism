@@ -2,7 +2,7 @@ import { Prisma, Article as PrismaArticle, ArticleStatus } from '@prisma/client'
 import { Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
-export class Article implements PrismaArticle {
+export class ArticleModel implements PrismaArticle {
   id: number
   title: string
   public: boolean

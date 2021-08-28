@@ -2,7 +2,7 @@ import { Tag as PrismaTag } from '@prisma/client'
 import { Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
-export class Tag implements PrismaTag {
+export class TagModel implements PrismaTag {
   id: number
   slug: string
 

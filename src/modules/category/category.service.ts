@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { Category, Prisma } from '@prisma/client'
 import { PrismaService } from '~/prisma'
 import { plainToClass } from 'class-transformer'
-import { Category as CategoryModel } from '~/models/category'
+import {  CategoryModel } from '~/models/category'
 
 @Injectable()
 export class CategoryService {

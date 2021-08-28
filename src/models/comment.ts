@@ -1,6 +1,6 @@
 import { Comment as PrismaComment } from '@prisma/client'
 
-export class Comment implements PrismaComment {
+export class CommentModel implements PrismaComment {
   id: number
   articleId: number
   userId: number

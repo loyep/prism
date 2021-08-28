@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { Tag, Article, Prisma } from '@prisma/client'
 import { PrismaService } from '~/prisma'
-import { Tag as TagModel } from '~/models/tag'
-import { Article as ArticleModel } from '~/models/article'
+import { TagModel } from '~/models/tag'
+import { ArticleModel } from '~/models/article'
 import { plainToClass } from 'class-transformer'
 
 @Injectable()

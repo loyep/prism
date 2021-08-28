@@ -3,7 +3,7 @@ import { UserService } from './user.service'
 import _ from 'lodash'
 import { User } from '@prisma/client'
 import { FollowService } from './follow.service'
-import { LikeService } from '~/modules/like'
+import { LikeService } from './like.service'
 
 @Controller('/api')
 export class UserApiController {
@@ -38,6 +38,7 @@ export class UserApiController {
   @Get('/users/:slug/likes')
   async getUserLikes(@Param('slug') slug: string) {
     const userId = await this.service.getUserIdBySlug(slug)
+    console.log(userId)
     if (!userId) return []
     return await this.like.articles(userId)
   }

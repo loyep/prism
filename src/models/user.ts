@@ -2,7 +2,7 @@ import { Prisma, User as PrismaUser } from '@prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
-export class User implements PrismaUser {
+export class UserModel implements PrismaUser {
   id: number
   email: string
   name: string
