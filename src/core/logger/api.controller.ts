@@ -10,7 +10,6 @@ export class LoggerApiController {
 
   @Post('/log')
   async logging(@Req() req: Request) {
-    console.log(req.headers)
     this.service.log({
       ip: getClientIp(req),
       url: req.headers.referer || '',
