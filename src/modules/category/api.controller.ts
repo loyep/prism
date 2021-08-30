@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import { CategoryService } from './category.service'
+import { CategoryApiService } from './api.service'
 
 @Controller('/api')
 export class CategoryApiController {
-  constructor(private readonly service: CategoryService) {}
+  constructor(private readonly service: CategoryApiService) {}
 
   @Get('/categories')
   async getCategory() {
@@ -13,9 +13,6 @@ export class CategoryApiController {
 
   @Get('/categories/:slug')
   async getCategoryBySlug(@Param('slug') slug: string) {
-    const category = await this.service.getCategory({
-      slug,
-    })
-    return category
+    return await this.service.getCategoryBySlug(slug)
   }
 }
