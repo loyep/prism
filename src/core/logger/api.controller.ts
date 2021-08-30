@@ -14,13 +14,13 @@ export class LoggerApiController {
 
   @Post('/log')
   async logging(@Req() req: Request, @Res() res: Response) {
+    const url = req.headers.referer || ''
+    if (!url) {
+      return res.send('')
+    }
     const cookieBid = req.cookies[logBidCookieName]
     const bid = cookieBid || uuidv4()
-    const data = {
-      ip: getClientIp(req),
-      bid,
-      url: req.headers.referer || '',
-    }
+    const data = { ip: getClientIp(req), bid, url }
     this.service.log(data)
     if (cookieBid) {
       return res.send('')
