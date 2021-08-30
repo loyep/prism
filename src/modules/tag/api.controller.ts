@@ -1,30 +1,28 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import { TagService } from './tag.service'
 import _ from 'lodash'
 import { Tag } from '@prisma/client'
+import { TagApiService } from './api.service'
 // import { hashSync } from 'bcrypt'
 
 @Controller('/api')
 export class TagApiController {
-  constructor(private readonly service: TagService) {}
+  constructor(private readonly apiService: TagApiService) {}
 
   @Get('/tags')
   async getTag() {
-    const tags = await this.service.tags()
+    const tags = await this.apiService.getTag()
     return tags
   }
 
   @Get('/tags/:slug')
   async getTagBySlug(@Param('slug') slug: string) {
-    const tag = await this.service.getTag({
-      slug,
-    })
+    const tag = await this.apiService.getTagBySlug(slug)
     return _.omit<Tag>(tag)
   }
 
   @Get('/tags/:slug/articles')
   async getArticleByTagSlug(@Param('slug') slug: string) {
-    const articles = await this.service.getArticlesByTag(slug)
+    const articles = await this.apiService.getArticleByTagSlug(slug)
     return articles
   }
 }

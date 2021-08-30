@@ -6,15 +6,12 @@ import { ArticleApiController } from './api.controller'
 
 // Services
 import { ArticleService } from './article.service'
+import { ArticleApiService } from './api.service'
 
 @Module({
   imports: [],
-  providers: [
-    ArticleService,
-  ],
+  providers: [ArticleService, ArticleApiService],
   controllers: [ArticleController, ArticleApiController],
-  exports: [
-    ArticleService,
-  ],
+  exports: [ArticleService],
 })
 export class ArticleModule {}

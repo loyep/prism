@@ -6,11 +6,13 @@ import { TagApiController } from './api.controller'
 
 // Services
 import { TagService } from './tag.service'
+import { TagApiService } from './api.service'
 
 @Module({
   imports: [],
   providers: [
     TagService,
+    TagApiService
   ],
   controllers: [TagController, TagApiController],
   exports: [
