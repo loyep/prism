@@ -258,10 +258,16 @@ model Ip {
 }
 
 model View {
-  id  Int    @id @default(autoincrement())
-  bid String?
-  ip  String
-  url String
+  id       Int     @id @default(autoincrement())
+  bid      String?
+  ip       String
+  // country     String
+  // region      String
+  // countryName String  @map("country_name")
+  // regionName  String  @map("region_name")
+  area     String?
+  areaInfo Json    @default("{}")
+  url      String
 
   @@map("views")
 }

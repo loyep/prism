@@ -1,20 +1,12 @@
-import { HttpService } from '@nestjs/axios'
-import { Inject, Injectable, Logger, LoggerService as NestLoggerService } from '@nestjs/common'
-// import { logger } from '@leaa/api/src/utils';
+import { Injectable, Logger, LoggerService as NestLoggerService } from '@nestjs/common'
 
 @Injectable()
 export class LoggerService extends Logger implements NestLoggerService {
-  @Inject(HttpService)
-  private readonly http: HttpService
-
   log(message: string, context?: string) {
     super.log(message, context)
-    // logger.log(message, context);
   }
 
-  logOnline(message: string, context?: string) {
-    this.http
-  }
+  logOnline(message: string, context?: string) {}
 
   error(message: string, trace: string, context?: string) {
     super.error(message, trace, context)

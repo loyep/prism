@@ -1,14 +1,13 @@
-import { Global, Module } from '@nestjs/common'
-import { LoggerService } from './logger.service'
 import { HttpModule } from '@nestjs/axios'
+import { Module } from '@nestjs/common'
 import { LoggerApiController } from './api.controller'
 import { LoggerApiService } from './api.service'
+import { LoggerCoreModule } from './logger-core.module'
 
-@Global()
 @Module({
-  imports: [HttpModule],
-  providers: [LoggerService, LoggerApiService],
+  imports: [LoggerCoreModule, HttpModule],
+  providers: [LoggerApiService],
   controllers: [LoggerApiController],
-  exports: [LoggerService],
+  exports: [],
 })
 export class LoggerModule {}

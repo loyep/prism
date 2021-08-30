@@ -6,12 +6,14 @@ import { LoggingInterceptor } from './core/interceptors/logging.interceptor'
 import { ValidationPipe } from '@nestjs/common'
 import { HttpExceptionFilter } from './core/filters/http-exception.filter'
 import { isOnlyApi } from './utils'
+import { LoggerService } from './core/logger'
 
 export async function bootstrap(app: NestExpressApplication, listening = true) {
+  const logger = app.get(LoggerService)
   app.use(cookieParser())
   app.useGlobalFilters(new HttpExceptionFilter())
   app.useGlobalPipes(new ValidationPipe())
-  app.useGlobalInterceptors(new LoggingInterceptor())
+  app.useGlobalInterceptors(new LoggingInterceptor(logger))
 
   const { serverPort } = loadConfig()
 
