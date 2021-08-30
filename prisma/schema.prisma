@@ -1,6 +1,7 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native"]
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native"]
+  previewFeatures = ["selectRelationCount", "filterJson", "fullTextSearch"]
 }
 
 generator dbml {
@@ -51,6 +52,7 @@ model User {
   email       String?    @unique
   name        String
   slug        String     @unique
+  avatar      String?
   /// 链接
   url         String?
   meta        Json?
@@ -70,6 +72,7 @@ model User {
   followings  Follower[] @relation(name: "following")
   followers   Follower[] @relation(name: "follower")
   likes       Like[]
+  token       String     @default(cuid())
 
   @@map("users")
 }
@@ -84,6 +87,7 @@ enum ArticleStatus {
 model Tag {
   id        Int              @id @default(autoincrement())
   slug      String           @unique
+  meta      Json?
   createdAt DateTime         @default(now()) @map("created_at")
   updatedAt DateTime         @default(now()) @updatedAt @map("updated_at")
   articles  TagsOnArticles[]
@@ -95,6 +99,7 @@ model Category {
   id            Int       @id @default(autoincrement()) @db.UnsignedInt
   slug          String    @unique
   name          String
+  meta          Json?
   description   String?
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
@@ -151,7 +156,7 @@ model Content {
   markdown  String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article  @relation(fields: [articleId], references: [id])
+  article   Article? @relation(fields: [articleId], references: [id])
 
   @@map("contents")
 }
@@ -233,4 +238,29 @@ model Follower {
   @@index([followerId], name: "followerId")
   @@index([followingId], name: "followingId")
   @@map("followers")
+}
+
+model Verification {
+  id        Int      @id @default(autoincrement())
+  code      String
+  token     String
+  captcha   String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("verifications")
+}
+
+model Ip {
+  ip String @id
+
+  @@map("ips")
+}
+
+model View {
+  id  Int    @id @default(autoincrement())
+  ip  String
+  url String
+
+  @@map("views")
 }

@@ -1,15 +1,22 @@
 import { Injectable } from '@nestjs/common'
+import { ClassTransformOptions } from '@nestjs/common/interfaces/external/class-transform-options.interface'
 import { User, Prisma } from '@prisma/client'
+import { plainToClass } from 'class-transformer'
+import { UserModel } from '~/models/user'
 import { PrismaService } from '~/prisma'
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async getUser(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User | null> {
-    return this.prisma.user.findUnique({
+  async getUser(
+    userWhereUniqueInput: Prisma.UserWhereUniqueInput,
+    options: ClassTransformOptions = {},
+  ): Promise<UserModel | null> {
+    const user = await this.prisma.user.findUnique({
       where: userWhereUniqueInput,
     })
+    return plainToClass(UserModel, user, options)
   }
 
   async getLikesByUser(slug: string): Promise<any[]> {
@@ -67,9 +74,10 @@ export class UserService {
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
+    const user = await this.prisma.user.create({
       data,
     })
+    return plainToClass(UserModel, user)
   }
 
   async updateUser(params: { where: Prisma.UserWhereUniqueInput; data: Prisma.UserUpdateInput }): Promise<User> {

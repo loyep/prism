@@ -1,8 +1,9 @@
-import { Tag as PrismaTag } from '@prisma/client'
+import { Prisma, Tag as PrismaTag } from '@prisma/client'
 import { Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
 export class TagModel implements PrismaTag {
+  meta: Prisma.JsonValue
   id: number
   slug: string
 

@@ -1,12 +1,19 @@
 import '@/global.css'
 import { LayoutProps } from 'ssr-types-react'
-import React, { FC, useContext, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import Container from '@/components/Container'
 import { Button } from 'antd'
 import useTheme from '@/hooks/theme'
+import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const [, toggleTheme] = useTheme()
+  const location = useLocation()
+
+  useEffect(() => {
+    axios.post(`/api/log`, {})
+  }, [location])
 
   return (
     <Container>

@@ -1,8 +1,9 @@
-import { Category as PrismaCategory } from '@prisma/client'
+import { Category as PrismaCategory, Prisma } from '@prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
 export class CategoryModel implements PrismaCategory {
+  meta: Prisma.JsonValue
   id: number
   slug: string
   name: string

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { User, Article } from '@prisma/client'
+import { Article } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 import { ArticleModel } from '~/models/article'
 import { UserModel } from '~/models/user'
@@ -21,11 +21,11 @@ export class LikeService {
     return plainToClass(ArticleModel, data)
   }
 
-  async users(articleId: number): Promise<User[]> {
-    const data = await this.prisma.user.findMany({
+  async users(articleId: number): Promise<UserModel[]> {
+    const users = await this.prisma.user.findMany({
       ...this.userConditions(articleId),
     })
-    return plainToClass(UserModel, data)
+    return users
   }
 
   async findUsersAndCount(articleId: number) {

@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Article, Prisma } from '@prisma/client'
+import { plainToClass } from 'class-transformer'
+import { ArticleModel } from '~/models/article'
 import { PrismaService } from '~/prisma'
 
 @Injectable()
@@ -7,9 +9,26 @@ export class ArticleService {
   constructor(private prisma: PrismaService) {}
 
   async getArticle(ArticleWhereUniqueInput: Prisma.ArticleWhereUniqueInput): Promise<Article | null> {
-    return this.prisma.article.findUnique({
+    const data = await this.prisma.article.findUnique({
       where: ArticleWhereUniqueInput,
+      include: {
+        user: {
+          select: {
+            id: true,
+            slug: true,
+            name: true,
+          },
+        },
+        category: true,
+        tags: true,
+        _count: {
+          select: {
+            tags: true,
+          }
+        }
+      },
     })
+    return plainToClass(ArticleModel, data)
   }
 
   async articles(
@@ -22,13 +41,28 @@ export class ArticleService {
     } = {},
   ): Promise<Article[]> {
     const { skip, take, cursor, where, orderBy } = params
-    return this.prisma.article.findMany({
+    const data = await this.prisma.article.findMany({
       skip,
       take,
       cursor,
       where,
       orderBy,
+      include: {
+        user: {
+          select: {
+            slug: true,
+            name: true,
+          },
+        },
+        category: {
+          select: {
+            name: true,
+            slug: true,
+          },
+        },
+      },
     })
+    return plainToClass(ArticleModel, data)
   }
 
   async createArticle(data: Prisma.ArticleCreateInput): Promise<Article> {
@@ -51,6 +85,11 @@ export class ArticleService {
   async deleteArticle(where: Prisma.ArticleWhereUniqueInput): Promise<Article> {
     return this.prisma.article.delete({
       where,
+      include: {
+        tags: true,
+        favoritings: true,
+        content: true,
+      },
     })
   }
 

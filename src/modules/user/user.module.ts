@@ -8,11 +8,12 @@ import { UserApiController } from './api.controller'
 import { UserService } from './user.service'
 import { FollowService } from './follow.service'
 import { LikeModule } from '~/modules/like'
+import { UserApiService } from './api.service'
 
 @Module({
   imports: [LikeModule],
-  providers: [UserService, FollowService],
+  providers: [UserService, FollowService, UserApiService],
   controllers: [UserController, UserApiController],
-  exports: [],
+  exports: [UserService],
 })
 export class UserModule {}
