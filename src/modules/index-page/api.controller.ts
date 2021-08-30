@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common'
-import { PrismaService } from '~/prisma'
+import { PrismaService } from '@/prisma'
 import { ApiService } from './index.service'
 
 @Controller('/api')

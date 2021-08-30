@@ -3,7 +3,7 @@ import { Inject } from '@nestjs/common'
 import { Injectable } from '@nestjs/common'
 import { View } from '@prisma/client'
 import { firstValueFrom } from 'rxjs'
-import { PrismaService } from '~/prisma'
+import { PrismaService } from '@/prisma'
 import { LoggerService } from './logger.service'
 // import { logger } from '@leaa/api/src/utils';
 

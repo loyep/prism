@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { ClassTransformOptions } from '@nestjs/common/interfaces/external/class-transform-options.interface'
 import { User, Prisma } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
-import { UserModel } from '~/models/user'
-import { PrismaService } from '~/prisma'
+import { UserModel } from '@/models/user'
+import { PrismaService } from '@/prisma'
 
 @Injectable()
 export class UserService {

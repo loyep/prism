@@ -3,8 +3,8 @@ import { PassportStrategy } from '@nestjs/passport'
 import { plainToClass } from 'class-transformer'
 import { Request } from 'express'
 import { ExtractJwt, Strategy } from 'passport-jwt'
-import { UserModel } from '~/models/user'
-import { UserService } from '~/modules/user'
+import { UserModel } from '@/models/user'
+import { UserService } from '@/modules/user'
 
 const tokenCookieName = 'token'
 

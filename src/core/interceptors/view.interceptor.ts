@@ -1,7 +1,7 @@
 import { CallHandler, ExecutionContext, Inject, Injectable, NestInterceptor, Scope } from '@nestjs/common'
 import { Request } from 'express'
 import { Observable } from 'rxjs'
-import { PrismaService } from '~/prisma'
+import { PrismaService } from '@/prisma'
 
 @Injectable({ scope: Scope.REQUEST })
 export class ViewInterceptor implements NestInterceptor {

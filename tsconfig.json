@@ -22,9 +22,9 @@
     "outDir": "./dist",
     "typeRoots": ["./typings", "./node_modules/@types"],
     "paths": {
-      "~/*": ["src/*"],
-      "@/*": ["web/*"]
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
     }
   },
-  "exclude": ["dist", "node_modules", "test", "web", "build", "mp"]
+  "include": ["src"]
 }

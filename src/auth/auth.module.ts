@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { UserModule } from '~/modules/user'
+import { UserModule } from '@/modules/user'
 import { AuthTokenModule } from './auth-token.module'
 
 import { AuthController } from './auth.controller'
