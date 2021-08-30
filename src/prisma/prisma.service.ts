@@ -7,6 +7,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     const options: Prisma.PrismaClientOptions = {}
     super(options)
   }
+
   async onModuleInit() {
     await this.$connect()
   }
