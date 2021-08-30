@@ -259,6 +259,7 @@ model Ip {
 
 model View {
   id  Int    @id @default(autoincrement())
+  bid String?
   ip  String
   url String
 

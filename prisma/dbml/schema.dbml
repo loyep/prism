@@ -193,6 +193,7 @@ Table Ip {
 
 Table View {
   id Int [pk, increment]
+  bid String
   ip String [not null]
   url String [not null]
 }
