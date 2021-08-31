@@ -8,6 +8,7 @@ import { UserModule } from './modules/user'
 import { CoreModule } from './core.module'
 import { AuthModule } from './auth'
 import { MediaModule } from './modules/media'
+import { LoggerMiddleware } from './core/middlewares/logger.middleware'
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ export class AppModule {
       // CSRFMiddleware,
       // SessionMiddleware,
       // UserMiddleware,
+      LoggerMiddleware,
     ]
     consumer.apply(...middlewares).forRoutes({ path: '*', method: RequestMethod.ALL })
   }

@@ -87,9 +87,11 @@
     "prisma": "^2.30.0",
     "prisma-dbml-generator": "^0.7.0",
     "rimraf": "^3.0.2",
+    "start-server-webpack-plugin": "^2.2.5",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "vite": "^2.5.1"
+    "vite": "^2.5.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "repository": {
     "type": "git",
