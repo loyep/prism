@@ -5,10 +5,10 @@ import database from './database'
 import logging from './logging'
 
 class CacheProvider {
-  private readonly config = {}
+  private readonly _config = {}
 
   constructor() {
-    this.config = {
+    this._config = {
       app,
       auth,
       database,
@@ -17,12 +17,18 @@ class CacheProvider {
   }
 
   get(key: string) {
-    return _.get(this.config, key)
+    return _.get(this._config, key)
   }
 }
 
-const provider = new CacheProvider()
 
-export default function config(key: string) {
-  return provider.get(key)
+export default function config(this: any, key: string) {
+  if (!this.provider) {
+    console.log('before', this.provider)
+    this.provider = new CacheProvider()
+    console.log(this.provider)
+  }
+  console.log('config')
+
+  return this.provider.get(key)
 }

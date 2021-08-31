@@ -1,11 +1,11 @@
-import '@/global.css'
-import { LayoutProps } from 'ssr-types-react'
-import React, { FC, useEffect } from 'react'
 import Container from '@/components/Container'
+import '@/global.css'
 import useTheme from '@/hooks/theme'
-import { NavLink, useLocation } from 'react-router-dom'
-import axios from 'axios'
 import Layout from '@/layouts'
+import axios from 'axios'
+import React, { FC, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { LayoutProps } from 'ssr-types-react'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const [, toggleTheme] = useTheme()
