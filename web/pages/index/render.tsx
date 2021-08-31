@@ -8,10 +8,11 @@ interface IndexProps {
 const Index: FC<IndexProps> = (props) => {
   const uploadProps = {
     name: 'file',
-    action: 'https://aiecho.cn/api/medias',
+    action: '/api/medias',
     headers: {
     },
     onChange(info: any) {
+      console.log('info', info);
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList)
       }

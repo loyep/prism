@@ -46,3 +46,4 @@ package-lock.json
 alinode.json
 
 .env
+public/upload/*

@@ -38,8 +38,12 @@ export class MediaService {
   }
 
   async createMedia(data: Prisma.MediaCreateInput): Promise<Media> {
-    return this.prisma.media.create({
-      data,
+    return this.prisma.media.upsert({
+      create: data,
+      update: data,
+      where: {
+        path: data.path,
+      },
     })
   }
 
