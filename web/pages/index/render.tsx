@@ -1,10 +1,28 @@
 import React, { FC } from 'react'
-
+import { Upload, message, Button } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 interface IndexProps {
   title?: string
 }
 
 const Index: FC<IndexProps> = (props) => {
+  const uploadProps = {
+    name: 'file',
+    action: 'https://aiecho.cn/api/medias',
+    headers: {
+    },
+    onChange(info: any) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList)
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`)
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`)
+      }
+    },
+  }
+
   return (
     <div>
       <div className="p-6 m-16 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4 dark:bg-gray-900">
@@ -16,6 +34,9 @@ const Index: FC<IndexProps> = (props) => {
           <p className="text-gray-500">You have a new message!</p>
         </div>
       </div>
+      <Upload {...uploadProps}>
+        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      </Upload>
     </div>
   )
 }
