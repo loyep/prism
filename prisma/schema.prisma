@@ -182,9 +182,14 @@ model Like {
 }
 
 model Media {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id          Int      @id @default(autoincrement())
+  filename    String
+  alt         String
+  description String?
+  path        String   @unique
+  type        String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("medias")
 }

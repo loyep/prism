@@ -7,9 +7,20 @@ import { TagModule } from './modules/tag'
 import { UserModule } from './modules/user'
 import { CoreModule } from './core.module'
 import { AuthModule } from './auth'
+import { MediaModule } from './modules/media'
 
 @Module({
-  imports: [CoreModule, DetailModule, IndexModule, UserModule, ArticleModule, CategoryModule, TagModule, AuthModule],
+  imports: [
+    CoreModule,
+    DetailModule,
+    IndexModule,
+    UserModule,
+    ArticleModule,
+    CategoryModule,
+    TagModule,
+    AuthModule,
+    MediaModule,
+  ],
   providers: [],
 })
 export class AppModule {

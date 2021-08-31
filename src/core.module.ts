@@ -5,6 +5,8 @@ import { ServeStaticModule } from '@nestjs/serve-static'
 import { basePath } from '@kova/core'
 import { LoggerModule } from './core/logger'
 import { ConfigModule } from '@nestjs/config'
+import { ScheduleModule } from '@nestjs/schedule'
+import { CleanMediaService } from './core/cron/clean-meida.service'
 
 @Module({
   imports: [
@@ -24,8 +26,10 @@ import { ConfigModule } from '@nestjs/config'
       envFilePath: ['.env', '.env.development'],
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     PrismaModule,
     LoggerModule,
   ],
+  providers: [CleanMediaService],
 })
 export class CoreModule {}
