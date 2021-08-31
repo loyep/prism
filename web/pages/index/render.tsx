@@ -9,10 +9,10 @@ const Index: FC<IndexProps> = (props) => {
   const uploadProps = {
     name: 'file',
     action: '/api/medias',
-    headers: {
-    },
+    accept: '.doc,.docx,image/*,video/*',
+    headers: {},
     onChange(info: any) {
-      console.log('info', info);
+      console.log('info', info)
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList)
       }
