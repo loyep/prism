@@ -13,7 +13,7 @@ module.exports = {
         '4xl': '2rem',
       },
       colors: {
-        'sidebar-color': '#FEBE85',
+        // ...colors,
         background: colors.blueGray[50],
         blueGray: colors.blueGray,
         theme: colors.blueGray[900],

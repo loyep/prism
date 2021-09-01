@@ -2,7 +2,6 @@ import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
 import { ArticleModule } from './modules/article'
 import { CategoryModule } from './modules/category'
 import { DetailModule } from './modules/detail-page/detail.module'
-import { IndexModule } from './modules/index-page/index.module'
 import { TagModule } from './modules/tag'
 import { UserModule } from './modules/user'
 import { CoreModule } from './core.module'
@@ -14,7 +13,6 @@ import { LoggerMiddleware } from './core/middlewares/logger.middleware'
   imports: [
     CoreModule,
     DetailModule,
-    IndexModule,
     UserModule,
     ArticleModule,
     CategoryModule,

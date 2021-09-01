@@ -15,6 +15,6 @@ export class CleanMediaService implements OnModuleInit {
   }
 
   onModuleInit() {
-    this.handleCron()
+    // this.handleCron()
   }
 }

@@ -1,11 +1,21 @@
+import { SsrRender } from '@/core/render'
 import { render } from '@kova/ssr'
 import { Controller, Get, Param, Req, Res } from '@nestjs/common'
+import type { Request } from 'express'
 import { Readable } from 'stream'
 import { ArticleApiService } from './api.service'
 
 @Controller()
 export class ArticleController {
   constructor(private readonly apiService: ArticleApiService) {}
+
+  @Get('/')
+  @SsrRender({ cache: true })
+  async handlerIndex(@Res({ passthrough: true }) res: Request) {
+    return {
+      apiService: this.apiService,
+    }
+  }
 
   @Get('/article/:slug')
   async getArticleBySlug(@Param('slug') slug: string, @Req() req, @Res() res) {
