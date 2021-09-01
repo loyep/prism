@@ -6,7 +6,9 @@ const config = {
     const lessToJs = require('less-vars-to-js')
     const fs = require('fs')
 
-    const modifyVars = (lessToJs.__esModule ? lessToJs.default : lessToJs)(fs.readFileSync('./web/variables.less'))
+    const modifyVars = (lessToJs.__esModule ? lessToJs.default : lessToJs)(
+      fs.readFileSync('./web/variables.less', 'utf8'),
+    )
 
     return {
       loaderOptions: {
