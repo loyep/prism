@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react'
 import cls from 'classnames'
+import Footer from './Footer'
 import { NavLink, useLocation } from 'react-router-dom'
 
 interface LayoutProps {
@@ -34,7 +35,6 @@ const Layout: FC<LayoutProps> = (props) => {
 
   useEffect(() => {
     setCurrentUrl(location.pathname)
-    return () => {}
   }, [])
 
   useEffect(() => {
@@ -282,6 +282,7 @@ const Layout: FC<LayoutProps> = (props) => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   )
 }
