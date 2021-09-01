@@ -2,7 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common'
 
 import { CacheCoreModule } from './cache-core.module'
 import { CacheService } from '../cache'
-import config from '@/config'
+import config from '@/core/config'
 
 @Module({})
 export class CacheModule {

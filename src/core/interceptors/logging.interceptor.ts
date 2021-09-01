@@ -1,4 +1,4 @@
-import config from '@/config'
+import config from '@/core/config'
 import { CallHandler, ExecutionContext, Inject, Injectable, NestInterceptor } from '@nestjs/common'
 import { Request } from 'express'
 import { Observable } from 'rxjs'

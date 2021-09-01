@@ -1,14 +1,8 @@
-import _ from 'lodash'
-// import app from './app'
-// import auth from './auth'
-// import database from './database'
-// import logging from './logging'
-// import cache from './cache'
+import { loadModule } from '@kova/ssr'
 import fs from 'fs'
+import _ from 'lodash'
 import path from 'path'
 const configPath = path.resolve(process.cwd(), 'dist/config')
-console.log('configPath', configPath)
-import { loadModule } from '@kova/ssr'
 
 class CacheProvider {
   private readonly config = {}
@@ -19,7 +13,7 @@ class CacheProvider {
 
   loadConfig() {
     const allConfig = {}
-    const configFiles = fs.readdirSync(configPath).filter((f) => path.extname(f) === '.js' && f !== 'index.js')
+    const configFiles = fs.readdirSync(configPath).filter((f) => path.extname(f) === '.js')
     for (const file of configFiles) {
       const extname = path.extname(file)
       const filePath = path.join(configPath, file)
@@ -32,7 +26,6 @@ class CacheProvider {
   }
 
   get(key: string) {
-    console.log(this.config)
     return _.get(this.config, key)
   }
 }
