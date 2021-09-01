@@ -1,11 +1,7 @@
-// const chunkName = 'kova'
-
 /**
  * @type {import('ssr-server-utils').UserConfig}
  */
 const config = {
-  cssModulesWhiteList: [/vditor/, /antd/, /swiper/, /tailwindcss/],
-
   css: () => {
     const lessToJs = require('less-vars-to-js')
     const fs = require('fs')
