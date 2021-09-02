@@ -39,16 +39,14 @@ export type GetServerSidePropsContext<S extends { [key: string]: any } = { [key:
   resolvedUrl: string
 }
 
-export type GetServerSideProps<
-  S extends { [key: string]: any } = {},
-  P extends { [key: string]: any } = { [key: string]: any },
-> = (ctx: GetServerSidePropsContext<S>) => Promise<GetServerSidePropsResult<P>>
+export type GetServerSideProps<P extends { [key: string]: any } = { [key: string]: any }> = (
+  ctx: GetServerSidePropsContext<any>,
+) => Promise<GetServerSidePropsResult<P>>
 
-export function WrapFetch<
-  S extends { [key: string]: any } = {},
-  P extends { [key: string]: any } = { [key: string]: any },
->(asyncData: GetServerSideProps<S, P>): (ctx: ISSRContext<S>) => FetchDataResult {
-  return async function (ctx: ISSRContext<S>): Promise<any> {
+export function WrapFetch<P extends { [key: string]: any } = { [key: string]: any }>(
+  asyncData: GetServerSideProps<P>,
+): (ctx: ISSRContext<any>) => FetchDataResult {
+  return async function (ctx: ISSRContext<any>): Promise<any> {
     const route = useResolveRoute(ctx)
     const namespace = getPageNamespace(route.match)
 
