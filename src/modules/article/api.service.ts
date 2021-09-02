@@ -7,7 +7,7 @@ import { ArticleService } from './article.service'
 export class ArticleApiService {
   @Inject(ArticleService) private readonly service: ArticleService
 
-  async getArticle(q: string) {
+  async articles(q: string) {
     const filter: Prisma.ArticleWhereInput = {}
     if (!_.isEmpty(q)) {
       filter.title = { contains: q }

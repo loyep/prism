@@ -20,6 +20,7 @@ import crypto from 'crypto'
 // import { getBundleInfo } from '@kova/core'
 import { PATH_METADATA } from '@nestjs/common/constants'
 import { isOnlyApi } from '@/utils'
+import { isEmpty } from 'lodash'
 
 const REFLECTOR = 'Reflector'
 
@@ -65,21 +66,23 @@ export class SsrRenderInterceptor implements NestInterceptor {
     const ssrRenderMeta = this.reflector.get(SSR_RENDER_METADATA, context.getHandler())
     req.match = match
     const { cache = false, ...options } = ssrRenderMeta || {}
+    const mode = req.query.csr === 'true' ? 'csr' : options.mode ?? 'ssr'
     let result: any
     let key: string
     const disableCache = isDev || req.get('cache-control') === 'no-cache'
-
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
       result = await this.cache.get(key)
     }
 
-    if (result) {
+    if (!isEmpty(result)) {
       return of(result)
     }
 
     try {
-      result = await firstValueFrom(next.handle())
+      if (mode === 'ssr') {
+        result = await firstValueFrom(next.handle())
+      }
       this.renderContext = {
         request: req,
         response: {},
@@ -89,14 +92,13 @@ export class SsrRenderInterceptor implements NestInterceptor {
       const content = await this.getRenderContent({
         ...this.config,
         ...options,
+        mode,
       })
       if (content instanceof Stream) {
         await this.sendStream(res, content)
       } else {
         if (!disableCache) {
-          this.cache.set(key, content, 300).then(() => {
-            //
-          })
+          this.cache.set(key, content, 300).then(() => {})
         }
         return of(content)
       }
@@ -112,10 +114,13 @@ export class SsrRenderInterceptor implements NestInterceptor {
 
   async getRenderContent(options: any) {
     const { mode } = options
+    if (mode === 'csr') {
+      return await this.renderCsr(options)
+    }
+
     try {
       return await render<Readable>(this.renderContext, options)
     } catch (error) {
-      console.log(error)
       if (mode !== 'csr' && mode !== 'ssr') {
         return await this.renderCsr(options)
       } else {

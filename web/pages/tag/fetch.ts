@@ -1,8 +1,11 @@
 export default async (ctx: any) => {
-  const data = __isBrowser__
-    ? await (await window.fetch(`/api/tags/${ctx.match.params.slug}`)).json()
-    : await ctx.apiService.getTagBySlug(ctx.request.params.slug)
-
+  let data = {}
+  if (__isBrowser__) {
+    data = await (await window.fetch(`/api/tags/${ctx.match.params.slug}`)).json()
+  } else {
+    data = ctx.pageProps
+  }
+  
   return {
     tag: data,
   }

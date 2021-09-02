@@ -12,7 +12,7 @@ export default function useTheme() {
     })
   }
 
-  const theme = useMemo(() => state.theme ?? 'light', [state.theme])
+  const theme = useMemo(() => state?.theme ?? 'light', [state?.theme])
 
   useEffect(() => {
     if (__isBrowser__) {

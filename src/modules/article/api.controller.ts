@@ -15,8 +15,8 @@ export class ArticleApiController {
   constructor(private readonly service: ArticleService, private readonly apiService: ArticleApiService) {}
 
   @Get('/articles')
-  async getArticle(@Query('q') q: string) {
-    return await this.apiService.getArticle(q)
+  async articles(@Query('q') q: string) {
+    return await this.apiService.articles(q)
   }
 
   @Get('/articles/:slug')
