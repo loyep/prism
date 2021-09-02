@@ -6,10 +6,13 @@ import { LoggerService } from '../logger'
 @Injectable()
 export class IpMiddleware implements NestMiddleware {
   @Inject(LoggerService) logger: LoggerService
+  private readonly whiteList = ['127.0.0.1', 'localhost', 'aiecho.cn']
 
-  async use(req: Request, res: Response, next: NextFunction): Promise<void> {
-    this.logger.log('1')
-    await next()
-    this.logger.log('2')
+  use(req: Request, res: Response, next: NextFunction) {
+    if (this.whiteList.includes(req.hostname)) {
+      next()
+    } else {
+      res.status(500).send()
+    }
   }
 }
