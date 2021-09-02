@@ -7,7 +7,6 @@ import { ValidationPipe } from '@nestjs/common'
 import { HttpExceptionFilter } from './core/filters/http-exception.filter'
 import { isOnlyApi } from './utils'
 import { LoggerService } from './core/logger'
-import config from '@/core/config'
 
 export async function bootstrap(app: NestExpressApplication, listening = true) {
   const logger = app.get(LoggerService)
@@ -23,10 +22,6 @@ export async function bootstrap(app: NestExpressApplication, listening = true) {
       express: true,
     })
   }
-  config('app.name')
-  config('app.name')
-  config('app.name')
-  config('app.name')
 
   app.disable('x-powered-by')
 

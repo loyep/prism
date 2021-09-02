@@ -7,9 +7,13 @@ import { LoggerService } from '../logger'
 export class LoggerMiddleware implements NestMiddleware {
   @Inject(LoggerService) logger: LoggerService
 
-  async use(req: Request, res: Response, next: NextFunction): Promise<void> {
-    this.logger.log('1')
-    await next()
-    this.logger.log('2')
+  private readonly whiteList = ['127.0.0.1', 'localhost', 'aiecho.cn']
+
+  use(req: Request, res: Response, next: NextFunction): any {
+    if (this.whiteList.includes(req.hostname)) {
+      res.status(500).send()
+    } else {
+      next()
+    }
   }
 }
