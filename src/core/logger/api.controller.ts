@@ -20,7 +20,8 @@ export class LoggerApiController {
     }
     const cookieBid = req.cookies[logBidCookieName]
     const bid = cookieBid || uuidv4()
-    const data = { ip: getClientIp(req), bid, url }
+    const ua = req.headers['user-agent'] || ''
+    const data = { ip: getClientIp(req), bid, url, ua }
     this.service.log(data)
     if (cookieBid) {
       return res.send('')

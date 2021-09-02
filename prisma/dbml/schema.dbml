@@ -203,6 +203,7 @@ Table View {
   area String
   areaInfo Json [not null, default: {}]
   url String [not null]
+  ua String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
 }

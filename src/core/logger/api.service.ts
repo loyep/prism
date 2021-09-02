@@ -18,7 +18,7 @@ export class LoggerApiService {
     return ips.includes(ip)
   }
 
-  async log(data: Pick<View, 'ip' | 'url'>) {
+  async log(data: Pick<View, 'ip' | 'url' | 'ua'>) {
     const { ip } = data
     if (!this.ipFilter(ip)) {
       const { data: area } = await firstValueFrom(this.http.get(`http://ip-api.com/json/${ip}?lang=zh-CN`))
