@@ -20,8 +20,6 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
     "@chakra-ui/react": "^1.6.7",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
     "@nestjs/axios": "^0.0.1",
     "@nestjs/common": "^8.0.6",
     "@nestjs/config": "^1.0.1",
