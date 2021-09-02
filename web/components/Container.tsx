@@ -5,7 +5,7 @@ interface ContainerProps {
   children: ReactNode
 }
 const Container: FC<ContainerProps> = (props) => {
-  return <div className="bg-white dark:bg-black">{props.children}</div>
+  return <div className="bg-white dark:bg-black container">{props.children}</div>
 }
 
 export default Container

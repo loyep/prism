@@ -10,7 +10,10 @@ const Layout: FC<LayoutProps> = (props: LayoutProps) => {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        />
         <meta name="theme-color" content="#000000" />
         <title>Kova</title>
         {injectCss}

@@ -1,5 +1,4 @@
-import Container from '@/components/Container'
-import '@/global.css'
+// import '@/global.css'
 import useTheme from '@/hooks/theme'
 import Layout from '@/layouts'
 import { useTitle } from 'ahooks'
@@ -8,6 +7,8 @@ import React, { FC, useContext, useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { LayoutProps } from 'ssr-types-react'
 import { siteName } from './utils'
+import { ChakraProvider } from '@chakra-ui/react'
+import { Container } from "@chakra-ui/react"
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const [, toggleTheme] = useTheme()
@@ -28,14 +29,16 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
   }, [location])
 
   return (
-    <Layout>
-      <Container>
-        {props.children}
-        <button className="bg-gray-300 text-white dark:text-white dark:bg-black rounded w-28" onClick={toggleTheme}>
-          Theme
-        </button>
-      </Container>
-    </Layout>
+    <ChakraProvider>
+      <Layout>
+        <Container>
+          {props.children}
+          <button className="bg-gray-300 text-white dark:text-white dark:bg-black rounded w-28" onClick={toggleTheme}>
+            Theme
+          </button>
+        </Container>
+      </Layout>
+    </ChakraProvider>
   )
 }
 

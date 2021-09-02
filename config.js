@@ -18,9 +18,6 @@ const config = {
             javascriptEnabled: true,
           },
         },
-        postcss: {
-          plugins: [require('tailwindcss'), require('autoprefixer')],
-        },
       },
     }
   },
