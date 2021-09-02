@@ -8,7 +8,8 @@ import { useLocation } from 'react-router-dom'
 import { LayoutProps } from 'ssr-types-react'
 import { siteName } from './utils'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Container } from "@chakra-ui/react"
+import { Container } from '@chakra-ui/react'
+import theme from '@chakra-ui/theme'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const [, toggleTheme] = useTheme()
@@ -29,7 +30,7 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
   }, [location])
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme} resetCSS>
       <Layout>
         <Container>
           {props.children}
