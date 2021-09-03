@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
-    "@chakra-ui/react": "^1.6.7",
     "@nestjs/axios": "^0.0.1",
     "@nestjs/common": "^8.0.6",
     "@nestjs/config": "^1.0.1",
@@ -61,7 +60,7 @@
     "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@kova/ssr": "^0.0.9",
+    "@kova/ssr": "^0.0.10",
     "@nestjs/schematics": "^8.0.3",
     "@nestjs/testing": "^8.0.6",
     "@types/bcrypt": "^5.0.0",
@@ -131,5 +130,6 @@
   },
   "lint-staged": {
     "*.{js,ts,vue,css}": "prettier --write"
-  }
+  },
+  "packageManager": "yarn@3.1.0-rc.2"
 }
