@@ -130,6 +130,5 @@
   },
   "lint-staged": {
     "*.{js,ts,vue,css}": "prettier --write"
-  },
-  "packageManager": "yarn@3.1.0-rc.2"
+  }
 }
