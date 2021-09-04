@@ -125,14 +125,12 @@ export class MediaApiController {
       }
       const resoleFileDir = path.resolve(process.cwd(), 'public', dir)
       const resoleFilePath = path.resolve(resoleFileDir, media.filename)
-      if (fs.existsSync(resoleFilePath)) throw new HttpException(`文件已存在${media.path}`, 400)
-      console.log(resoleFileDir)
-      if (!fs.existsSync(resoleFileDir)) fs.mkdirSync(resoleFileDir, { recursive: true })
-      fs.writeFileSync(path.resolve(resoleFileDir, media.filename), file.buffer)
-      await this.service.createMedia(media)
-      console.log(media)
-      // const filesData = await this.service.createMedias(medias)
-      // return filesData
+      if (!fs.existsSync(resoleFilePath)) {
+        console.log(resoleFileDir)
+        if (!fs.existsSync(resoleFileDir)) fs.mkdirSync(resoleFileDir, { recursive: true })
+        fs.writeFileSync(path.resolve(resoleFileDir, media.filename), file.buffer)
+        await this.service.createMedia(media)
+      }
       const clientConfig = {
         credential: {
           secretId: 'AKIDoV8cswnQp1zjFXbR3QZUCgvvhEXbQ0Ro',
