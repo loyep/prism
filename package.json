@@ -41,6 +41,7 @@
     "dplayer": "^1.26.0",
     "framer-motion": "^4",
     "ioredis": "^4.27.9",
+    "is_js": "^0.9.0",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
@@ -53,7 +54,8 @@
     "react-router-dom": "^5.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
-    "swiper": "^7.0.2"
+    "swiper": "^7.0.2",
+    "tencentcloud-sdk-nodejs": "^4.0.194"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

@@ -1,6 +1,16 @@
 import { MediaModel } from '@/models/media'
-import { Controller, Delete, Get, Param, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common'
-import { FilesInterceptor } from '@nestjs/platform-express'
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+  UploadedFile,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common'
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 import path from 'path'
 import { MediaApiService } from './api.service'
 import { MediaService } from './media.service'
@@ -9,6 +19,9 @@ import crypto from 'crypto'
 import dayjs from 'dayjs'
 import fs from 'fs'
 import { HttpException } from '@nestjs/common'
+import * as tencentcloud from 'tencentcloud-sdk-nodejs'
+
+const OcrClient = tencentcloud.ocr.v20181119.Client
 
 function string10to62(number: number) {
   const chars = 'ABCDEFGHIGKLMNOPQRSTUVWXYZ0123456789abcdefghigklmnopqrstuvwxyz'.split('')
@@ -79,18 +92,78 @@ export class MediaApiController {
       console.log(medias)
       // const filesData = await this.service.createMedias(medias)
       // return filesData
-      return medias.map(media => `https://k.loyep.com${media.path}`)
+      return medias.map((media) => `https://k.loyep.com${media.path}`)
     } catch (error) {
       console.log(error)
       throw error
       // this.service.removeFiles(files)
     }
-    console.log(files)
+  }
 
-    // const res = await this.service.createMedia(media as any)
-    // return await this.service.getTagsByMedia(slug)
-    // console.log(res)
-    return 1
+  @Post('/ocr')
+  @UseInterceptors(FileInterceptor('file'))
+  async ocr(@UploadedFile() file: Express.Multer.File) {
+    try {
+      // const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
+      const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
+      // const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
+      //   filename: `${filename}.${extname}`,
+      //   alt: '',
+      //   description: '',
+      //   path: `/upload/${dayjs().format('YYYY/MM/DD')}/${filename}.${extname}`,
+      //   type,
+      // }
+      const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
+      // const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
+      const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
+      const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
+        filename: `${filename}.${extname}`,
+        alt: '',
+        description: '',
+        path: `/${dir}/${filename}.${extname}`,
+        type,
+      }
+      const resoleFileDir = path.resolve(process.cwd(), 'public', dir)
+      const resoleFilePath = path.resolve(resoleFileDir, media.filename)
+      if (fs.existsSync(resoleFilePath)) throw new HttpException(`文件已存在${media.path}`, 400)
+      console.log(resoleFileDir)
+      if (!fs.existsSync(resoleFileDir)) fs.mkdirSync(resoleFileDir, { recursive: true })
+      fs.writeFileSync(path.resolve(resoleFileDir, media.filename), file.buffer)
+      await this.service.createMedia(media)
+      console.log(media)
+      // const filesData = await this.service.createMedias(medias)
+      // return filesData
+      const clientConfig = {
+        credential: {
+          secretId: 'AKIDoV8cswnQp1zjFXbR3QZUCgvvhEXbQ0Ro',
+          secretKey: 'GI6f06xc3GExTnunSs3ziEYedPyINDtM',
+        },
+        region: 'ap-beijing',
+        profile: {
+          httpProfile: {
+            endpoint: 'ocr.tencentcloudapi.com',
+          },
+        },
+      }
+
+      const client = new OcrClient(clientConfig)
+      const params2 = {
+        ImageUrl: `https://k.loyep.com${media.path}`,
+      }
+      client.BusinessCardOCR(params2).then(
+        (data) => {
+          console.log(data)
+        },
+        (err) => {
+          console.error('error', err)
+        },
+      )
+      // return `https://k.loyep.com${media.path}`
+    } catch (error) {
+      console.log(error)
+      throw error
+      // this.service.removeFiles(files)
+    }
   }
 
   @Delete('/medias/:id')
