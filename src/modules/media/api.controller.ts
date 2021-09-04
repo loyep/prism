@@ -79,7 +79,7 @@ export class MediaApiController {
       console.log(medias)
       // const filesData = await this.service.createMedias(medias)
       // return filesData
-      return medias.map(media => `https://aiecho.cn${media.path}`)
+      return medias.map(media => `https://k.loyep.com${media.path}`)
     } catch (error) {
       console.log(error)
       throw error
