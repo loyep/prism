@@ -148,6 +148,7 @@ export class MediaApiController {
       const params2 = {
         ImageUrl: `https://k.loyep.com${media.path}`,
       }
+      console.log('params2', params2)
       client.BusinessCardOCR(params2).then(
         (data) => {
           console.log(data)
