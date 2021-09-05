@@ -2,6 +2,7 @@
  * @type {import('ssr-server-utils').UserConfig}
  */
 const config = {
+  serverPort: 3001,
   css: () => {
     const lessToJs = require('less-vars-to-js')
     const fs = require('fs')

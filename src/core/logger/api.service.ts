@@ -30,7 +30,7 @@ export class LoggerApiService {
           areaInfo: area,
         },
       })
-      this.logger.log(JSON.stringify(data))
+      this.logger.debug(JSON.stringify(data))
     }
   }
 }

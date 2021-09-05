@@ -11,6 +11,7 @@
     "start": "ssr build && pm2 start pm2.config.js",
     "prisma:generate": "npx prisma generate",
     "prisma:db:push": "npx prisma db push",
+    "predev": "yarn prisma:db:push",
     "dev": "ssr start",
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
@@ -55,7 +56,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
     "swiper": "^7.0.2",
-    "tencentcloud-sdk-nodejs": "^4.0.194"
+    "tencentcloud-sdk-nodejs": "^4.0.194",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
