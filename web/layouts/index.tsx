@@ -47,11 +47,11 @@ const Layout: FC<LayoutProps> = (props) => {
   }, [menus])
 
   return (
-    <>
-    <Header />
+    <div>
+      <Header />
       {props.children}
       {/* <Footer /> */}
-    </>
+    </div>
   )
 }
 
