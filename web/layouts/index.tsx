@@ -2,6 +2,7 @@ import React, { FC, useEffect, useMemo, useState } from 'react'
 import cls from 'classnames'
 import Footer from './Footer'
 import { NavLink, useLocation } from 'react-router-dom'
+import Header from './Header'
 
 interface LayoutProps {
   children: React.ReactChild
@@ -47,6 +48,7 @@ const Layout: FC<LayoutProps> = (props) => {
 
   return (
     <>
+    <Header />
       {props.children}
       {/* <Footer /> */}
     </>
