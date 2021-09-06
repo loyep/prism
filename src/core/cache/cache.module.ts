@@ -3,6 +3,7 @@ import { DynamicModule, Module } from '@nestjs/common'
 import { CacheCoreModule } from './cache-core.module'
 import { CacheService } from '../cache'
 import config from '@/core/config'
+import { FileCacheService } from './file-cache.service'
 
 @Module({})
 export class CacheModule {
@@ -20,8 +21,8 @@ export class CacheModule {
     return {
       module: CacheModule,
       global: true,
-      providers: [CacheService],
-      exports: [CacheService],
+      providers: [CacheService, FileCacheService],
+      exports: [CacheService, FileCacheService],
       imports: [CacheCoreModule.register(this.getConfig())],
     }
   }

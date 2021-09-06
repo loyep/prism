@@ -7,7 +7,7 @@ export class ArticleController {
   constructor(private readonly apiService: ArticleApiService) {}
 
   @Get('/')
-  @SsrRender()
+  @SsrRender({ cache: true })
   async handlerIndex(@Query('q') q: string) {
     const pageProps = await this.apiService.articles(q)
     return {

@@ -1,3 +1,4 @@
+import { isOnlyApi } from '@/utils'
 import {
   CallHandler,
   ExecutionContext,
@@ -5,22 +6,20 @@ import {
   Injectable,
   InternalServerErrorException,
   NestInterceptor,
-  NotFoundException,
+  NotFoundException
 } from '@nestjs/common'
-import { Reflector } from '@nestjs/core'
-import { Response } from 'express-serve-static-core'
-import { firstValueFrom, Observable, of } from 'rxjs'
-import { RedirectException } from '../exceptions/redirect.exception'
-import { render } from 'ssr-core-react'
-import { Readable, Stream } from 'stream'
-import { SSR_RENDER_METADATA } from './ssr-render.constants'
-import { CacheService } from '../cache'
-import { UserConfig } from 'ssr-types'
-import crypto from 'crypto'
-// import { getBundleInfo } from '@kova/core'
 import { PATH_METADATA } from '@nestjs/common/constants'
-import { isOnlyApi } from '@/utils'
+import { Reflector } from '@nestjs/core'
+import crypto from 'crypto'
+import { Response } from 'express-serve-static-core'
 import { isEmpty } from 'lodash'
+import { firstValueFrom, Observable, of } from 'rxjs'
+import { render } from 'ssr-core-react'
+import { UserConfig } from 'ssr-types'
+import { Readable, Stream } from 'stream'
+import { FileCacheService } from '../cache'
+import { RedirectException } from '../exceptions/redirect.exception'
+import { SSR_RENDER_METADATA } from './ssr-render.constants'
 
 const REFLECTOR = 'Reflector'
 
@@ -38,7 +37,7 @@ export interface SsrRenderOptions {
   mode?: 'csr' | 'ssr'
 }
 
-const isDev = process.env.NODE_ENV !== 'production'
+// const isDev = process.env.NODE_ENV !== 'production'
 
 @Injectable()
 export class SsrRenderInterceptor implements NestInterceptor {
@@ -46,8 +45,8 @@ export class SsrRenderInterceptor implements NestInterceptor {
   protected readonly reflector: Reflector
   protected renderContext: any
 
-  @Inject(CacheService)
-  private readonly cache: CacheService
+  @Inject(FileCacheService)
+  private readonly cache: FileCacheService
 
   private readonly config: UserConfig = {
     parallelFetch: false,
@@ -69,7 +68,8 @@ export class SsrRenderInterceptor implements NestInterceptor {
     const mode = req.query.csr === 'true' ? 'csr' : options.mode ?? 'ssr'
     let result: any
     let key: string
-    const disableCache = isDev || req.get('cache-control') === 'no-cache'
+    // const disableCache = isDev || req.get('cache-control') === 'no-cache'
+    const disableCache = false
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
       result = await this.cache.get(key)
