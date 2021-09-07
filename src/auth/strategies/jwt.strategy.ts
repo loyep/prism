@@ -12,7 +12,7 @@ export interface AccessTokenPayload {
   id: string
   slug: string
   cacheId: string
-  token: string
+  createdAt: number
 }
 
 const fromCookie = () => {
@@ -40,7 +40,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: AccessTokenPayload) {
     const user = await this.userService.getUser({ id: Number(payload.id) }, { ignoreDecorators: true })
-    if (user && user.token === payload.token) {
+    if (user && user.updatedPwdAt.getTime() < payload.createdAt) {
       return plainToClass(UserModel, user)
     }
     return null

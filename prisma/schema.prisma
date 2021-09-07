@@ -1,7 +1,8 @@
 generator client {
   provider        = "prisma-client-js"
-  binaryTargets   = ["native"]
   previewFeatures = ["selectRelationCount", "filterJson", "fullTextSearch"]
+  binaryTargets   = ["native"]
+  output          = "./client"
 }
 
 generator dbml {
@@ -48,48 +49,42 @@ model Article {
 }
 
 model User {
-  id          Int        @id @default(autoincrement())
-  email       String?    @unique
-  name        String
-  slug        String     @unique
-  avatar      String?
+  id           Int        @id @default(autoincrement())
+  email        String?    @unique
+  name         String
+  slug         String     @unique
   /// 链接
-  url         String?
-  meta        Json?
-  cover       String?
-  bio         String?
-  description String?
-  mobile      String?
-  openid      String?
-  password    String
-  loggedAt    DateTime   @default(now()) @map("logged_at")
-  createdAt   DateTime   @default(now()) @map("created_at")
-  updatedAt   DateTime   @default(now()) @updatedAt @map("updated_at")
-  deleteAt    DateTime?  @map("delete_at")
-  articles    Article[]
-  comments    Comment[]
-  favorites   Favorite[]
-  followings  Follower[] @relation(name: "following")
-  followers   Follower[] @relation(name: "follower")
-  likes       Like[]
-  token       String     @default(cuid())
+  url          String?
+  meta         Json?
+  cover        String?
+  bio          String?
+  description  String?
+  mobile       String?
+  openid       String?
+  password     String
+  loggedAt     DateTime   @default(now()) @map("logged_at")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @default(now()) @updatedAt @map("updated_at")
+  deleteAt     DateTime?  @map("delete_at")
+  avatar       String?
+  // token       String
+  articles     Article[]
+  comments     Comment[]
+  favorites    Favorite[]
+  followers    Follower[] @relation("follower")
+  followings   Follower[] @relation("following")
+  likes        Like[]
+  updatedPwdAt DateTime   @default(now()) @map("updated_pwd_at")
 
   @@map("users")
-}
-
-enum ArticleStatus {
-  PUBLISHED
-  PRIVATE
-  PASSWORD
-  DRAFT
 }
 
 model Tag {
   id        Int              @id @default(autoincrement())
   slug      String           @unique
-  meta      Json?
   createdAt DateTime         @default(now()) @map("created_at")
   updatedAt DateTime         @default(now()) @updatedAt @map("updated_at")
+  meta      Json?
   articles  TagsOnArticles[]
 
   @@map("tags")
@@ -99,12 +94,12 @@ model Category {
   id            Int       @id @default(autoincrement()) @db.UnsignedInt
   slug          String    @unique
   name          String
-  meta          Json?
   description   String?
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
-  articles      Article[]
   article_count Int       @default(0)
+  meta          Json?
+  articles      Article[]
 
   @@map("categories")
 }
@@ -156,7 +151,7 @@ model Content {
   markdown  String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article? @relation(fields: [articleId], references: [id])
+  article   Article  @relation(fields: [articleId], references: [id])
 
   @@map("contents")
 }
@@ -183,13 +178,13 @@ model Like {
 
 model Media {
   id          Int      @id @default(autoincrement())
-  filename    String
-  alt         String
-  description String?
-  path        String   @unique
-  type        String
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  alt         String
+  description String?
+  filename    String
+  path        String   @unique
+  type        String
 
   @@map("medias")
 }
@@ -236,8 +231,8 @@ model Follower {
   followingId Int      @map("following_id")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
-  follower    User     @relation(name: "follower", fields: [followerId], references: [id])
-  following   User     @relation(name: "following", fields: [followingId], references: [id])
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  following   User     @relation("following", fields: [followingId], references: [id])
 
   @@id([followerId, followingId])
   @@index([followerId], name: "followerId")
@@ -264,14 +259,21 @@ model Ip {
 
 model View {
   id        Int      @id @default(autoincrement())
-  bid       String?
   ip        String
+  url       String
+  bid       String?
   area      String?
   areaInfo  Json     @default("{}")
-  url       String
-  ua        String?  @db.VarChar(500)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  ua        String?  @db.VarChar(500)
 
   @@map("views")
+}
+
+enum ArticleStatus {
+  PUBLISHED
+  PRIVATE
+  PASSWORD
+  DRAFT
 }

@@ -49,7 +49,7 @@ export class AuthService {
     const payload: AccessTokenPayload = {
       slug: user.slug,
       id: String(user.id),
-      token: user.token,
+      createdAt: Date.now(),
       cacheId,
     }
     return {

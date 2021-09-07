@@ -52,6 +52,7 @@ export class AuthController {
   @UseGuards(JwtGuard)
   @Get('/profile')
   async getProfile(@Req() req: Request) {
+    this.logger.log('user', (req as any).user)
     return (req as any).user
   }
 }

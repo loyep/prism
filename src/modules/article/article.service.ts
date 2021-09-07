@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Article, Prisma } from '@prisma/client'
+import { Article, Prisma } from '~/prisma/client'
 import { plainToClass } from 'class-transformer'
 import { ArticleModel } from '@/models/article'
 import { PrismaService } from '@/prisma'

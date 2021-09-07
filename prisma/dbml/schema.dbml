@@ -33,7 +33,6 @@ Table User {
   email String [unique]
   name String [not null]
   slug String [unique, not null]
-  avatar String
   url String [note: '链接']
   meta Json
   cover String
@@ -46,21 +45,22 @@ Table User {
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
   deleteAt DateTime
+  avatar String
   articles Article [not null]
   comments Comment [not null]
   favorites Favorite [not null]
-  followings Follower [not null]
   followers Follower [not null]
+  followings Follower [not null]
   likes Like [not null]
-  token String [not null]
+  updatedPwdAt DateTime [default: `now()`, not null]
 }
 
 Table Tag {
   id Int [pk, increment]
   slug String [unique, not null]
-  meta Json
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
+  meta Json
   articles TagsOnArticles [not null]
 }
 
@@ -68,12 +68,12 @@ Table Category {
   id Int [pk, increment]
   slug String [unique, not null]
   name String [not null]
-  meta Json
   description String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  articles Article [not null]
   article_count Int [not null, default: 0]
+  meta Json
+  articles Article [not null]
 }
 
 Table Topic {
@@ -111,7 +111,7 @@ Table Content {
   markdown String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article Article
+  article Article [not null]
 }
 
 Table Collection {
@@ -130,13 +130,13 @@ Table Like {
 
 Table Media {
   id Int [pk, increment]
-  filename String [not null]
-  alt String [not null]
-  description String
-  path String [unique, not null]
-  type String [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  alt String [not null]
+  description String
+  filename String [not null]
+  path String [unique, not null]
+  type String [not null]
 }
 
 Table Menu {
@@ -198,14 +198,14 @@ Table Ip {
 
 Table View {
   id Int [pk, increment]
-  bid String
   ip String [not null]
+  url String [not null]
+  bid String
   area String
   areaInfo Json [not null, default: {}]
-  url String [not null]
-  ua String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
+  ua String
 }
 
 Enum ArticleStatus {

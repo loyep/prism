@@ -1,13 +1,12 @@
-import { Prisma, User as PrismaUser } from '@prisma/client'
+import { Prisma, User as PrismaUser } from '~/prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
 export type { PrismaUser as User }
 
-export class UserModel implements PrismaUser {
-  @Exclude()
-  token: string
+const TransformDate = Transform(({ value }) => dayjs(value).format('YYYY-MM-DD HH:mm:ss'), { toClassOnly: true })
 
+export class UserModel implements PrismaUser {
   avatar: string
   id: number
   email: string
@@ -21,16 +20,20 @@ export class UserModel implements PrismaUser {
   mobile: string
   openid: string
 
+  @TransformDate
+  @Exclude()
+  updatedPwdAt: Date
+
   @Exclude()
   password: string
 
-  @Transform(({ value }) => dayjs(value).format('YYYY-MM-DD HH:mm:ss'), { toClassOnly: true })
+  @TransformDate
   loggedAt: Date
 
-  @Transform(({ value }) => dayjs(value).format('YYYY-MM-DD HH:mm:ss'), { toClassOnly: true })
+  @TransformDate
   createdAt: Date
 
-  @Transform(({ value }) => dayjs(value).format('YYYY-MM-DD HH:mm:ss'), { toClassOnly: true })
+  @TransformDate
   updatedAt: Date
 
   @Exclude()
