@@ -14,7 +14,7 @@ import crypto from 'crypto'
 import { Response } from 'express-serve-static-core'
 import { isEmpty } from 'lodash'
 import { firstValueFrom, Observable, of } from 'rxjs'
-import { render } from 'ssr-core-react'
+import { render } from 'ssr-core-vue3'
 import { UserConfig } from 'ssr-types'
 import { Readable, Stream } from 'stream'
 import { FileCacheService } from '../cache'
@@ -69,7 +69,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     let result: any
     let key: string
     // const disableCache = isDev || req.get('cache-control') === 'no-cache'
-    const disableCache = false
+    const disableCache = true
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
       result = await this.cache.get(key)

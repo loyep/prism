@@ -1,5 +1,5 @@
 import { getPageNamespace, useResolveRoute } from '@/hooks'
-import { ISSRContext } from 'ssr-types-react'
+import { ISSRContext } from 'ssr-types'
 import { emitter } from '../emits'
 export interface Meta {
   title: string

@@ -1,4 +1,4 @@
-import { message as AntMessage } from 'antd'
+// import { message as AntMessage } from 'antd'
 import axios, { Method } from 'axios'
 
 const service = axios.create({
@@ -28,7 +28,7 @@ export default function request(options: any): Promise<any> {
         switch (status) {
           case 401: {
             if (__isBrowser__) {
-              AntMessage.error(message || '未登录').then(() => {})
+              // AntMessage.error(message || '未登录').then(() => {})
               location.href = `${location.protocol}//${location.host}${
                 location.port ? ':' + location.port : ''
               }/login?redrect=${encodeURIComponent(location.href)}`
@@ -39,7 +39,7 @@ export default function request(options: any): Promise<any> {
             const success = code === 0
             if (!success) {
               if (__isBrowser__) {
-                AntMessage.error(message).then(() => {})
+                // AntMessage.error(message).then(() => {})
               }
               reject(new Error(message))
             } else {

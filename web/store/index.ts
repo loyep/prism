@@ -1,14 +1,12 @@
-// 用户自定义 store，用法查看文档 http://doc.ssr-fc.com/docs/features$communication#React%20%E5%9C%BA%E6%99%AF
+import { indexStore } from './modules/index'
+import { detailStore } from './modules/detail'
+import { searchStore } from './modules/search'
 
-const state = {
-  theme: 'light'
+const modules = {
+  indexStore,
+  detailStore,
+  searchStore
 }
-
-function reducer () {
-
-}
-
 export {
-  state,
-  reducer
+  modules
 }
