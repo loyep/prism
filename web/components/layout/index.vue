@@ -1,11 +1,11 @@
 
-<script lang="tsx">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  setup(props, ctx) {
+<script lang="ts" setup>
+import { computed } from "vue";
 
-  },
+const siteTitle = computed(() => {
+  return 'Kova'
 })
+
 </script>
 
 <template>
@@ -14,7 +14,7 @@ export default defineComponent({
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="theme-color" content="#000000" />
-    <title>Serverless Side Render for Vue3</title>
+    <title>{{ siteTitle }}</title>
     <slot name="viteClient" />
     <slot name="customeHeadScript" />
     <slot name="cssInject" />
