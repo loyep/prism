@@ -1,5 +1,5 @@
 import { IsInt, IsOptional, IsString } from 'class-validator'
-import { Article as PrismaArticle } from '~/prisma/client'
+import { Article as PrismaArticle } from '@prisma/client'
 
 export class CreateArticleDto implements Partial<PrismaArticle> {
   //   id: number
