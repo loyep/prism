@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "prebuild": "yarn prisma:db:push",
+    "prebuild": "npm run prisma:db:push",
     "build": "ssr build",
     "deploy": "ssr build && ssr deploy",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
@@ -11,7 +11,8 @@
     "start": "ssr build && pm2 start pm2.config.js",
     "prisma:generate": "npx prisma generate",
     "prisma:db:push": "npx prisma db push",
-    "predev": "yarn prisma:db:push",
+    "analyze": "BUNDLE_ANALYZE=true npm run build",
+    "predev": "npm run prisma:db:push",
     "dev": "ssr start",
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
