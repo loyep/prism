@@ -16,7 +16,8 @@
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
     "start:nest": "nest start --watch",
-    "stop": "pm2 stop pm2.config.js"
+    "stop": "pm2 stop pm2.config.js",
+    "postinstall": "node scripts/postbuild.ts"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
