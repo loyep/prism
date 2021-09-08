@@ -293,7 +293,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/zack/Documents/Git/prism/prisma/client",
+      "value": "/Users/heixing/Git/prism/prisma/client",
       "fromEnvVar": null
     },
     "config": {

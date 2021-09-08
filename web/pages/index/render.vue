@@ -1,15 +1,12 @@
-
 <template>
-  <div>
-
-  </div>
+  <div>test</div>
 </template>
 
-<script lang="ts">
+<script lang="tsx">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   components: {
-  },
+  }
 })
 </script>

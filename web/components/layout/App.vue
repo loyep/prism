@@ -1,15 +1,23 @@
 <template>
-  <router-view />
-  <!-- <Checkbox/> -->
-  <!-- <Button>test</Button> -->
+  <ConfigProvider :locale="zhCN">
+    <router-view />
+    <Button>test</Button>
+  </ConfigProvider>
 </template>
 
-<script lang="ts">
-// import { Checkbox } from 'ant-design-vue'
-// 在这里可以进行一些全局组件的注册逻辑
-export default {
+<script lang="ts" >
+import { defineComponent } from 'vue';
+import { Button, ConfigProvider } from 'ant-design-vue'
+import zhCN from 'ant-design-vue/lib/locale/zh_CN';
+export default defineComponent({
   components: {
-    // Checkbox,
+    Button,
+    ConfigProvider,
   },
-}
+  setup() {
+    return {
+      zhCN
+    }
+  }
+})
 </script>

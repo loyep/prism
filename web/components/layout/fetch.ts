@@ -1,5 +1,5 @@
-import { emitter } from '@/hooks'
-import _ from 'lodash'
+// import { emitter } from '@/hooks'
+// import _ from 'lodash'
 
 let hasRender = __isBrowser__ && !!window.__USE_SSR__
 
@@ -18,7 +18,8 @@ const layoutFetch = async (ctx: any) => {
       })
       hasRender = true
     }
-    return _.pickBy(payload, _.identity)
+    // return _.pickBy(payload, _.identity)
+    return payload
   } catch (e) {
     console.log(e)
   }
@@ -28,7 +29,7 @@ export default function (ctx: any) {
   return new Promise((resolve) => {
     layoutFetch(ctx).then((res) => {
       resolve(res)
-      emitter.emit('layout')
+      // emitter.emit('layout')
     })
   })
 }
