@@ -68,7 +68,7 @@
     "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@kova/ssr": "^0.0.11",
+    "@kova/ssr": "^0.0.12",
     "@nestjs/schematics": "^8.0.3",
     "@nestjs/testing": "^8.0.6",
     "@types/bcrypt": "^5.0.0",

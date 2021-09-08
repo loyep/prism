@@ -1,5 +1,4 @@
-const { nestjsPlugin } = require('@kova/ssr')
-const { vuePlugin } = require('ssr-plugin-vue3')
+const { nestjsPlugin, vuePlugin } = require('@kova/ssr')
 
 module.exports = {
   serverPlugin: nestjsPlugin(),

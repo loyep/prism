@@ -1,4 +1,4 @@
-export function main() {
+function main() {
   console.log('11')
 }
 
