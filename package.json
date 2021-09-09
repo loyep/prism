@@ -18,7 +18,8 @@
     "start:vite": "ssr start --vite",
     "start:nest": "nest start --watch",
     "stop": "pm2 stop pm2.config.js",
-    "postinstall": "node scripts/postbuild.ts"
+    "postinstall": "node scripts/postbuild.ts",
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
@@ -107,36 +108,7 @@
     "type": "git",
     "url": "https://github.com/loyep/prism.git"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint --edit"
-    }
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "./coverage",
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": ".",
-    "testEnvironment": "node",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "roots": [
-      "<rootDir>/src/",
-      "<rootDir>/libs/"
-    ],
-    "moduleNameMapper": {
-      "^@app/kova(|/.*)$": "<rootDir>/libs/kova/src/$1"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,vue,css}": "prettier --write"
+  "engines": {
+    "node": "^12 || >=14"
   }
 }
