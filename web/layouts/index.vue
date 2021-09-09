@@ -3,7 +3,7 @@ import { Button } from 'ant-design-vue'
 
 </script>
 
-<template lang="html">
+<template>
   <div>
     <slot />
     <Button>test</Button>
