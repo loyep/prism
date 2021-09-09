@@ -67,7 +67,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     const mode = req.query.csr === 'true' ? 'csr' : options.mode ?? 'ssr'
     let result: any
     let key: string
-    const disableCache = isDev || req.get('cache-control') === 'no-cache'
+    let disableCache = isDev || req.get('cache-control') === 'no-cache'
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
       result = await this.cache.get(key)

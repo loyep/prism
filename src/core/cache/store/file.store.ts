@@ -12,7 +12,12 @@ export class FileStore implements CacheStore {
     const cachePath = this.getCacheFilePath(key)
     let cache = null
     if (fs.existsSync(cachePath)) {
-      cache = fs.readFileSync(cachePath)
+      try {
+        const data = JSON.parse(fs.readFileSync(cachePath, 'utf8'))
+        if (data && data.expiresAt > Date.now()) {
+          cache = data.content          
+        }
+      } catch (e) {}
     }
     return Promise.resolve(cache)
   }
@@ -23,7 +28,11 @@ export class FileStore implements CacheStore {
 
   async set(key: string, value: any, options?: any): Promise<any> {
     const cachePath = this.getCacheFilePath(key)
-    fs.writeFileSync(cachePath, value)
+    const data = {
+      expiresAt: Date.now() + 1000 * 3600,
+      content: value
+    }
+    fs.writeFileSync(cachePath, JSON.stringify(data))
     return Promise.resolve(true)
   }
 
