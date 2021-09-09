@@ -1,10 +1,10 @@
 import { Module } from 'vuex'
 
 interface AppState {
-  darkMode?: 'light' | 'dark'
+  darkMode: 'light' | 'dark'
 }
 
-const appStore: Module<AppState, any> = {
+const app: Module<AppState, any> = {
   namespaced: true,
   state: {
     darkMode: 'light',
@@ -21,4 +21,4 @@ const appStore: Module<AppState, any> = {
   },
 }
 
-export { appStore }
+export { app }

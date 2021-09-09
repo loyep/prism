@@ -17,21 +17,6 @@ import { MediaService } from './media.service'
 @Module({
   imports: [
     MulterModule.register({
-      // storage: diskStorage({
-      //   //自定义路径
-      //   destination: (req, file, cb) => {
-      //     const destination = `./public/upload/${dayjs().format('YYYY/MM/DD')}`
-      //     const dir = path.join(process.cwd(), destination)
-      //     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
-      //     cb(null, destination)
-      //   },
-      //   filename: (req, file, cb) => {
-      //     console.log(file)
-      //     console.log(req)
-      //     const md5 = crypto.createHash('md5').update(file.buffer).digest('hex').toString()
-      //     cb(null, `${md5}.${file.mimetype.split('/')[1]}`)
-      //   },
-      // }),
       storage: memoryStorage()
     }),
   ],

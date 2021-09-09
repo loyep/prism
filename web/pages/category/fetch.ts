@@ -1,6 +1,5 @@
 export default async (ctx: any) => {
   let data = {}
-  console.log(ctx)
   // if (__isBrowser__) {
   //   data = await (await window.fetch(`/api/categories/${ctx.match.params.slug}`)).json()
   // } else {

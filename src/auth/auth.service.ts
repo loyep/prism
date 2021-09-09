@@ -15,11 +15,9 @@ export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
   verifyPassword(password: string, oldPwd: string) {
-    console.log(password, oldPwd)
     if (!password || !oldPwd) {
       return false
     }
-    console.log(password)
     try {
       const hashPwd = hashSync(password, 10)
       console.log(hashPwd)

@@ -10,6 +10,7 @@ declare global {
     __VUE_APP__: App
     __VUE_ROUTER__: Router
     __USE_VITE__?: boolean
+    globalData: any
   }
   const __isBrowser__: Boolean
 }

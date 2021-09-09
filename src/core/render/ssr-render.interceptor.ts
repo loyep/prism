@@ -94,7 +94,6 @@ export class SsrRenderInterceptor implements NestInterceptor {
       } else {
         if (key) {
           this.cache.set(key, content, 300).then(() => {
-            console.log('save cache successfully!')
           })
         }
         return of(content)

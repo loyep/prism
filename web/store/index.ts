@@ -1,7 +1,7 @@
 import type { ModuleTree } from 'vuex'
-import { appStore } from './modules/app'
+import { app } from './modules/app'
 
 const modules: ModuleTree<any> = {
-  appStore,
+  app,
 }
 export { modules }

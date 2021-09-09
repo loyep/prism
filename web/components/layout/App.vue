@@ -13,14 +13,14 @@ import { ConfigProvider } from 'ant-design-vue'
 import zhCN from 'ant-design-vue/lib/locale/zh_CN';
 import Layout from '@/layouts/index.vue'
 
-const props = defineProps({
+defineProps({
   asyncData: {
     type: Object,
-    default: () => { }
+    required: true,
   },
   fetchData: {
     type: Object,
-    default: () => { }
+    required: true,
   }
 })
 </script>
