@@ -24,10 +24,7 @@ import { isDev } from '@/utils'
 
 const REFLECTOR = 'Reflector'
 
-const md5 = (key: string) => {
-  const hash = crypto.createHash('md5')
-  return hash.update(key).digest('hex')
-}
+const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
 
 const bundleVersion = Date.now()
 

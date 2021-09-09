@@ -133,8 +133,8 @@ export class MediaApiController {
       }
       const clientConfig = {
         credential: {
-          secretId: 'AKIDoV8cswnQp1zjFXbR3QZUCgvvhEXbQ0Ro',
-          secretKey: 'GI6f06xc3GExTnunSs3ziEYedPyINDtM',
+          secretId: '',
+          secretKey: '',
         },
         region: 'ap-beijing',
         profile: {
