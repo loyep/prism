@@ -29,8 +29,7 @@ const md5 = (key: string) => {
   return hash.update(key).digest('hex')
 }
 
-// const bundle = getBundleInfo()
-const bundleVersion = '1' //`${bundle.version}(${bundle.build})`
+const bundleVersion = Date.now()
 
 export interface SsrRenderOptions {
   stream?: boolean

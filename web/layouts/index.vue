@@ -1,12 +1,16 @@
 <script lang="ts" setup>
 import { Button } from 'ant-design-vue'
-
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const onTestPush = () => {
+  router.push('/category/test001')
+}
 </script>
 
 <template>
   <div class="layout">
     <slot />
-    <Button>test</Button>
+    <Button @click="onTestPush">test</Button>
   </div>
 </template>
 

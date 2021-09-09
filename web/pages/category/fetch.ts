@@ -1,10 +1,11 @@
 export default async (ctx: any) => {
   let data = {}
-  if (__isBrowser__) {
-    data = await (await window.fetch(`/api/categories/${ctx.match.params.slug}`)).json()
-  } else {
-    data = ctx.pageProps
-  }
+  console.log(ctx)
+  // if (__isBrowser__) {
+  //   data = await (await window.fetch(`/api/categories/${ctx.match.params.slug}`)).json()
+  // } else {
+  //   data = ctx.pageProps
+  // }
 
   // const data = __isBrowser__
   //   ? await (await window.fetch(`/api/categories/${ctx.match.params.slug}`)).json()
