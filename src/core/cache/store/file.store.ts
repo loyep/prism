@@ -23,6 +23,8 @@ export class FileStore implements CacheStore {
   }
 
   getCacheFilePath(key: string) {
+    console.log('key', key)
+    console.log('cachePath', this.cachePath)
     return path.join(this.cachePath, key)
   }
 
