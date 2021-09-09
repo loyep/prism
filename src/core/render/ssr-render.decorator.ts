@@ -5,7 +5,6 @@ import { SsrRenderInterceptor as BaseSsrRenderInterceptor, SsrRenderOptions } fr
 export function SsrRender(options: SsrRenderOptions = {}): MethodDecorator {
   return applyDecorators(
     SetMetadata(SSR_RENDER_METADATA, options),
-    // Injectable({ scope: Scope.REQUEST }),
     UseInterceptors(BaseSsrRenderInterceptor),
   )
 }

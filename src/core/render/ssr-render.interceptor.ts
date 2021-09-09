@@ -6,7 +6,7 @@ import {
   Injectable,
   InternalServerErrorException,
   NestInterceptor,
-  NotFoundException
+  NotFoundException,
 } from '@nestjs/common'
 import { PATH_METADATA } from '@nestjs/common/constants'
 import { Reflector } from '@nestjs/core'
@@ -20,6 +20,7 @@ import { Readable, Stream } from 'stream'
 import { FileCacheService } from '../cache'
 import { RedirectException } from '../exceptions/redirect.exception'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
+import { isDev } from '@/utils'
 
 const REFLECTOR = 'Reflector'
 
@@ -36,8 +37,6 @@ export interface SsrRenderOptions {
   cache?: boolean
   mode?: 'csr' | 'ssr'
 }
-
-// const isDev = process.env.NODE_ENV !== 'production'
 
 @Injectable()
 export class SsrRenderInterceptor implements NestInterceptor {
@@ -68,8 +67,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     const mode = req.query.csr === 'true' ? 'csr' : options.mode ?? 'ssr'
     let result: any
     let key: string
-    // const disableCache = isDev || req.get('cache-control') === 'no-cache'
-    const disableCache = true
+    const disableCache = isDev || req.get('cache-control') === 'no-cache'
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
       result = await this.cache.get(key)
