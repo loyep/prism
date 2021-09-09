@@ -95,7 +95,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
       if (content instanceof Stream) {
         await this.sendStream(res, content)
       } else {
-        if (!disableCache) {
+        if (key) {
           this.cache.set(key, content, 300).then(() => {})
         }
         return of(content)

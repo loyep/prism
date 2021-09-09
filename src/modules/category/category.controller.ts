@@ -16,7 +16,7 @@ export class CategoryController {
   }
 
   @Get('/category/:slug')
-  @SsrRender()
+  @SsrRender({ cache: true })
   async getCategoryBySlug(@Param('slug') slug: string) {
     const pageProps = await this.apiService.getCategoryBySlug(slug)
     return {
