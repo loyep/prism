@@ -29,15 +29,16 @@ export type PageMeta = {
 
 export type GetServerSidePropsResult<P> = { props: P; meta?: PageMeta }
 
-export type GetServerSidePropsContext<S extends { [key: string]: any } = { [key: string]: any }> = S & {
-  req?: IncomingMessage & {
-    // cookies: NextApiRequestCookies
+export type GetServerSidePropsContext<S extends { [key: string]: any } = { [key: string]: any }> =
+  S & {
+    req?: IncomingMessage & {
+      // cookies: NextApiRequestCookies
+    }
+    res?: ServerResponse
+    params: ParsedUrlQuery
+    query: ParsedUrlQuery
+    resolvedUrl: string
   }
-  res?: ServerResponse
-  params: ParsedUrlQuery
-  query: ParsedUrlQuery
-  resolvedUrl: string
-}
 
 export type GetServerSideProps<P extends { [key: string]: any } = { [key: string]: any }> = (
   ctx: GetServerSidePropsContext<any>,

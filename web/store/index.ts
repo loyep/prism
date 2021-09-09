@@ -1,12 +1,7 @@
-import { indexStore } from './modules/index'
-import { detailStore } from './modules/detail'
-import { searchStore } from './modules/search'
+import type { ModuleTree } from 'vuex'
+import { appStore } from './modules/app'
 
-const modules = {
-  indexStore,
-  detailStore,
-  searchStore
+const modules: ModuleTree<any> = {
+  appStore,
 }
-export {
-  modules
-}
+export { modules }

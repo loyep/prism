@@ -23,6 +23,4 @@ const props = defineProps({
     default: () => { }
   }
 })
-console.log(props.asyncData)
-console.log(props.fetchData)
 </script>
