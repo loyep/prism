@@ -12,12 +12,6 @@ async function main(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, express, {
     logger,
   })
-  // console.log('hmr')
-  // if (module.hot) {
-  //   console.log('hmr')
-  //   module.hot.accept()
-  //   module.hot.dispose(() => app.close())
-  // }
   await bootstrap(app, true)
 }
 
