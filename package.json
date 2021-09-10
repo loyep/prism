@@ -13,7 +13,7 @@
     "prisma:db:push": "npx prisma db push",
     "analyze": "BUNDLE_ANALYZE=true npm run build",
     "predev": "npm run prisma:db:push",
-    "dev": "ssr start",
+    "dev": "ts-node scripts/version && ssr start",
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
     "start:nest": "nest start --watch",
