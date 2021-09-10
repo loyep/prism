@@ -30,11 +30,8 @@ class CacheProvider {
   }
 }
 
-export default function config(key: string) {
-  var provider: CacheProvider
-  if (!provider) {
-    provider = new CacheProvider()
-  }
+const provider = new CacheProvider()
 
+export default function config(key: string) {
   return provider.get(key)
 }
