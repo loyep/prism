@@ -14,6 +14,7 @@ class CacheProvider {
   loadConfig() {
     const allConfig = {}
     const configFiles = fs.readdirSync(configPath).filter((f) => path.extname(f) === '.js')
+    console.log(configFiles)
     for (const file of configFiles) {
       const extname = path.extname(file)
       const filePath = path.join(configPath, file)
@@ -22,6 +23,7 @@ class CacheProvider {
       const fileName = path.basename(file, extname)
       allConfig[fileName] = config
     }
+    console.log(allConfig)
     return allConfig
   }
 
@@ -30,8 +32,18 @@ class CacheProvider {
   }
 }
 
-const provider = new CacheProvider()
 
-export default function config(key: string) {
+interface IConfig {
+  provider?: CacheProvider
+  (name: string): any
+}
+
+const Config: IConfig = function (key: string) {
+  let provider = Config.provider
+  if (!provider) {
+    Config.provider = provider = new CacheProvider()
+  }
   return provider.get(key)
 }
+
+export default Config
