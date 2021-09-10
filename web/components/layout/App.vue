@@ -13,7 +13,7 @@ import { ConfigProvider } from 'ant-design-vue'
 import zhCN from 'ant-design-vue/lib/locale/zh_CN';
 import Layout from '@/layouts/index.vue'
 
-defineProps({
+const props = defineProps({
   asyncData: {
     type: Object,
     required: true,
@@ -23,4 +23,8 @@ defineProps({
     required: true,
   }
 })
+
+if (__isBrowser__) {
+ console.log(props) 
+}
 </script>
