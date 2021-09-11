@@ -23,4 +23,13 @@ export class ArticleController {
       pageProps,
     }
   }
+
+
+  @Get('/write')
+  @SsrRender()
+  async write() {
+    return {
+      // pageProps,
+    }
+  }
 }
