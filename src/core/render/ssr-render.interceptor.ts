@@ -21,12 +21,11 @@ import { FileCacheService } from '../cache'
 import { RedirectException } from '../exceptions/redirect.exception'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
 import { isDev } from '@/utils'
+import config from '@/core/config'
 
 const REFLECTOR = 'Reflector'
 
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
-
-const bundleVersion = Date.now()
 
 export interface SsrRenderOptions {
   stream?: boolean
@@ -65,6 +64,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     let key: string
     // let disableCache = isDev || req.get('cache-control') === 'no-cache'
     let disableCache = isDev
+    const bundleVersion = config('app.bundleId')
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
       result = await this.cache.get(key)

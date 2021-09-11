@@ -14,7 +14,6 @@ class CacheProvider {
   loadConfig() {
     const allConfig = {}
     const configFiles = fs.readdirSync(configPath).filter((f) => path.extname(f) === '.js')
-    console.log(configFiles)
     for (const file of configFiles) {
       const extname = path.extname(file)
       const filePath = path.join(configPath, file)
@@ -23,7 +22,6 @@ class CacheProvider {
       const fileName = path.basename(file, extname)
       allConfig[fileName] = config
     }
-    console.log(allConfig)
     return allConfig
   }
 

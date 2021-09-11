@@ -14,6 +14,7 @@ export class ArticleApiService {
     }
     const articles = await this.service.articles({
       where: filter,
+      take: 20,
     })
     return articles
   }

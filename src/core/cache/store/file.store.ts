@@ -4,9 +4,6 @@ import path from 'path'
 
 export class FileStore implements CacheStore {
   private readonly cachePath = path.join(process.cwd(), './storage/views')
-  constructor() {
-    console.log(this.cachePath)
-  }
 
   async get(key: string): Promise<any> {
     const cachePath = this.getCacheFilePath(key)

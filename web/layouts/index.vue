@@ -1,16 +1,26 @@
 <script lang="ts" setup>
+import { watch } from 'vue'
 import { Button } from 'ant-design-vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute, RouterLink } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
 const onTestPush = () => {
   router.push('/category/test001')
 }
+
+watch(route, () => {
+  console.log(route)
+})
+
 </script>
 
 <template>
   <div class="layout">
     <slot />
-    <Button @click="onTestPush">test</Button>
+    <RouterLink to="/category/test001">
+      <Button>category/test001</Button>
+    </RouterLink>
+    <RouterLink to="/">Home</RouterLink>
   </div>
 </template>
 
