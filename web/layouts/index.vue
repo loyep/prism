@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
 import { Button } from 'ant-design-vue'
-import { useRouter, useRoute, RouterLink } from 'vue-router'
-const router = useRouter()
+import { useRoute, RouterLink } from 'vue-router'
+import Header from './Header.vue'
 const route = useRoute()
-const onTestPush = () => {
-  router.push('/category/test001')
-}
 
 watch(route, () => {
   console.log(route)
@@ -16,6 +13,7 @@ watch(route, () => {
 
 <template>
   <div class="layout">
+    <Header />
     <slot />
     <RouterLink to="/category/test001">
       <Button>category/test001</Button>
@@ -29,5 +27,9 @@ watch(route, () => {
   display: flex;
   min-height: 100vh;
   width: 100%;
+  flex-direction: column;
 }
+</style>
+
+<style src="./layout.less" lang="less">
 </style>

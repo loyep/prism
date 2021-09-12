@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout-wrapper">
     test
     <div>
       <ArticleItem v-for="article in articles" :key="article.id" />

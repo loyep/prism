@@ -13,8 +13,6 @@ onMounted(async () => {
                 enable: false,
             },
             after: () => {
-                // editor.value = vditor
-                console.log('Vditor11')
                 loadig.value = false
             }
         })

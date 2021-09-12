@@ -1,11 +1,9 @@
 <template>
-  <div>
+  <Layout>
     <ConfigProvider :locale="zhCN" virtual :autoInsertSpaceInButton="false">
-      <Layout>
-        <router-view />
-      </Layout>
+      <router-view />
     </ConfigProvider>
-  </div>
+  </Layout>
 </template>
 
 <script lang="ts" setup>
@@ -25,6 +23,6 @@ const props = defineProps({
 })
 
 if (__isBrowser__) {
- console.log(props) 
+  console.log(props)
 }
 </script>
