@@ -4,6 +4,9 @@
     <div>
       <ArticleItem v-for="article in articles" :key="article.id" />
     </div>
+    <ClientOnly>
+      test1111
+    </ClientOnly>
   </div>
 </template>
 
@@ -11,6 +14,7 @@
 import ArticleItem from '@/components/article/item.vue'
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex'
+import ClientOnly from '@/components/common/ClientOnly.vue';
 
 const store = useStore()
 const articles = computed(() => store.state.home.articles)
