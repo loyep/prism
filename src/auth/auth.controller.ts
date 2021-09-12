@@ -7,6 +7,7 @@ import { LoggerService } from '@/core/logger'
 import { AuthService } from './auth.service'
 import { LoginDto } from './dto/login.dto'
 import { RegisterDto } from './dto/register.dto'
+import { SsrRender } from '@/core/render'
 
 @Controller('/api')
 export class AuthController {
@@ -14,6 +15,18 @@ export class AuthController {
   private readonly logger: LoggerService
 
   constructor(private readonly service: AuthService) {}
+
+  @Get('/login')
+  @SsrRender()
+  async showLoginPage() {
+    return {}
+  }
+
+  @Get('/register')
+  @SsrRender()
+  async showRegisterPage() {
+    return {}
+  }
 
   @Post('/login')
   async login(@Body() loginDto: LoginDto) {
