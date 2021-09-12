@@ -2,7 +2,7 @@
 import { watch } from 'vue'
 import { Button } from 'ant-design-vue'
 import { useRoute, RouterLink } from 'vue-router'
-import Header from './Header.vue'
+import Header from './components/Header.vue'
 const route = useRoute()
 
 watch(route, () => {
