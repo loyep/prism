@@ -1,18 +1,33 @@
-<script lang="ts" >
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 
-export default defineComponent({
-    name: "ClientOnly",
-    data() {
-        return {
-            isMounted: false,
-        }
+const props = defineProps({
+    defer: {
+        type: Boolean,
+        default: false,
     },
-    mounted() {
-        this.isMounted = true
-    },
-    render() {
-        return this.$slots.default && this.isMounted ? this.$slots.default() : null
+})
+
+const emits = defineEmits(['mounted'])
+
+const mounted = ref(false)
+
+watch(() => props.defer, () => {
+    if (!props.defer) {
+        mounted.value = true
     }
 })
+
+onMounted(() => {
+    mounted.value = true
+})
+
+watch(() => mounted, () => {
+    emits('mounted', mounted.value)
+})
 </script>
+
+<template>
+    <slot v-if="mounted" />
+    <slot v-else name="fallback" />
+</template>
