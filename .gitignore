@@ -55,3 +55,4 @@ alinode.json
 .env
 public/upload/*
 .vscode
+BUNDLE_ID
