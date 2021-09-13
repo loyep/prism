@@ -37,6 +37,6 @@ const layoutComp = computed(() => {
 })
 
 if (__isBrowser__) {
-  console.log(props)
+  // console.log(props)
 }
 </script>

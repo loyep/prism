@@ -6,7 +6,7 @@ import Header from './components/Header.vue'
 const route = useRoute()
 
 watch(route, () => {
-  console.log(route)
+  // console.log(route)
 })
 
 </script>

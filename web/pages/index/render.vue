@@ -21,6 +21,6 @@ const store = useStore()
 const articles = computed(() => store.state.home.articles)
 
 onMounted(() => {
-  console.log('1')
+  // console.log('1')
 })
 </script>
