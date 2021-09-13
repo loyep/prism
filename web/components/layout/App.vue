@@ -27,8 +27,6 @@ const props = defineProps({
   }
 })
 
-console.log(route)
-
 const layoutComp = computed(() => {
   if (route.path === '/login' || route.path === '/register') {
     return AuthLayout
