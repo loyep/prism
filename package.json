@@ -117,6 +117,12 @@
   "engines": {
     "node": "^12 || >=14"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -c commitlint.config.js -E HUSKY_GIT_PARAMS"
+    }
+  },
   "lint-staged": {
     "*.{js,ts,tsx,vue,css,md}": "prettier --write"
   }
