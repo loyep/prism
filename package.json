@@ -1,11 +1,11 @@
 {
   "name": "kova",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "license": "MIT",
   "scripts": {
     "prebuild": "npm run prisma:db:push",
     "build": "ts-node scripts/version && ssr build",
-    "release": "standard-version --release-as minor",
+    "release": "standard-version --release-as patch",
     "postrelease": "git push --follow-tags origin master",
     "deploy": "ssr build && ssr deploy",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
