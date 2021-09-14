@@ -118,8 +118,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "vue-tsc && jest -o && lint-staged",
-      "commit-msg": "commitlint --edit"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,css,md}": "prettier --write"
   }
 }
