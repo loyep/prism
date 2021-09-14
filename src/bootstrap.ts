@@ -18,9 +18,7 @@ export async function bootstrap(app: NestExpressApplication, listening = true) {
   const { serverPort } = loadConfig()
 
   if (!isOnlyApi) {
-    await initialSSRDevProxy(app, {
-      express: true,
-    })
+    await initialSSRDevProxy(app, { express: true })
   }
 
   app.disable('x-powered-by')
