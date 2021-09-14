@@ -7,3 +7,5 @@ const modules: ModuleTree<any> = {
   home,
 }
 export { modules }
+
+var 1 =
