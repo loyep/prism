@@ -2,7 +2,7 @@
  * @type {import('ssr-server-utils').UserConfig}
  */
 const config = {
-  css: () => {
+  css() {
     const lessToJs = require('less-vars-to-js')
     const fs = require('fs')
 
