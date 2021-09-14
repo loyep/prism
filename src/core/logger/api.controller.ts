@@ -2,7 +2,6 @@ import { Req } from '@nestjs/common'
 import { Controller, Post } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { LoggerApiService } from './api.service'
-import { getClientIp } from '@kova/ssr'
 import { Res } from '@nestjs/common'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -21,7 +20,7 @@ export class LoggerApiController {
     const cookieBid = req.cookies[logBidCookieName]
     const bid = cookieBid || uuidv4()
     const ua = req.headers['user-agent'] || ''
-    const data = { ip: getClientIp(req), bid, url, ua }
+    const data = { ip: '127.0.0.1', bid, url, ua }
     this.service.log(data)
     if (cookieBid) {
       return res.send('')

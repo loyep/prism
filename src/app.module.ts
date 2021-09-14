@@ -7,7 +7,7 @@ import { CoreModule } from './core.module'
 import { AuthModule } from './auth'
 import { MediaModule } from './modules/media'
 import { LoggerMiddleware } from './core/middlewares/logger.middleware'
-import { IpMiddleware } from './core/middlewares/ip.middleware'
+// import { IpMiddleware } from './core/middlewares/ip.middleware'
 
 @Module({
   imports: [CoreModule, UserModule, ArticleModule, CategoryModule, TagModule, AuthModule, MediaModule],
@@ -16,7 +16,7 @@ import { IpMiddleware } from './core/middlewares/ip.middleware'
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     const middlewares = [
-      IpMiddleware,
+      // IpMiddleware,
       // CookieParserMiddleware,
       // RateLimitMiddleware,
       // CorsMiddleware,
