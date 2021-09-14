@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/loyep/prism/compare/v1.4.0...v1.5.0) (2021-09-14)
+
+
+### Features
+
+* 更新release脚本 ([3f9ae9d](https://github.com/loyep/prism/commit/3f9ae9ded9d9ec304d83f49a1863dc8674d789d5))
+
 ## [1.4.0](https://github.com/loyep/prism/compare/v1.3.0...v1.4.0) (2021-09-14)
 
 
