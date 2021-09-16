@@ -8,15 +8,18 @@
 
     <RouterLink to="/register">Register</RouterLink>
     <TestDemo />
+    {{ state.mode }}
   </div>
 </template>
 
 <script lang="tsx" setup>
 import ArticleItem from '@/components/article/item.vue'
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, } from 'vue';
 import { useStore } from 'vuex'
-import ClientOnly from '@/components/common/ClientOnly.vue';
+import ClientOnly from '@/components/common/NoSsr.vue';
 import { RouterLink } from 'vue-router'
+import { useTheme } from '@/hooks/useTheme';
+const { state } = useTheme()
 
 const store = useStore()
 const articles = computed(() => store.state.home.articles)
