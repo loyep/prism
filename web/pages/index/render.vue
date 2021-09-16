@@ -5,14 +5,12 @@
       <ArticleItem v-for="article in articles" :key="article.id" />
     </div>
     <ClientOnly>test1111</ClientOnly>
-
     <RouterLink to="/register">Register</RouterLink>
-    <TestDemo />
     {{ state.mode }}
   </div>
 </template>
 
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import ArticleItem from '@/components/article/item.vue'
 import { computed, onMounted, } from 'vue';
 import { useStore } from 'vuex'
@@ -23,10 +21,6 @@ const { state } = useTheme()
 
 const store = useStore()
 const articles = computed(() => store.state.home.articles)
-
-const TestDemo = () => {
-  return <div>基于Render方法渲染的标签</div>
-}
 
 onMounted(() => {
   // console.log('1')
