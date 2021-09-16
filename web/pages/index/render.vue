@@ -13,7 +13,6 @@
   <ClientOnly>test1111</ClientOnly>
 
   <RouterLink to="/register">Register</RouterLink>
-  <TestDemo />
 </template>
 
 <script lang="ts" setup>
